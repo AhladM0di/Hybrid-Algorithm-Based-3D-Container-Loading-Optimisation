@@ -363,13 +363,15 @@ def solve(instance: Instance, cap: int, seed: int, sweeps: int, reads: int,
           pool_seed: int | None = None, anneal_seed: int | None = None,
           weight_multiplier: float = 0, repairer=repair, pairwise: bool = False,
           slack_weight_unit: int | None = None, exact_slack: bool = False,
-          require_support: bool = False, support_during_search: bool = False) -> dict:
+          require_support: bool = False, support_during_search: bool = False,
+          varied_corners: bool = False) -> dict:
     started = perf_counter()
     pool_seed = seed if pool_seed is None else pool_seed
     anneal_seed = seed if anneal_seed is None else anneal_seed
     if weight_multiplier < 0:
         raise ValueError("Weight multiplier must be nonnegative")
-    candidates = generate_candidates(instance, cap, pool_seed, require_support=require_support)
+    candidates = generate_candidates(instance, cap, pool_seed, require_support=require_support,
+                                     varied_corners=varied_corners)
     price = critical_weight_price(instance) * Fraction(str(weight_multiplier))
     weights = {package.id: package.weight for package in instance.packages}
     rewards = tuple(round(prod(p.dimensions) - price * weights[p.package_id]) for p in candidates)
@@ -434,6 +436,7 @@ def solve(instance: Instance, cap: int, seed: int, sweeps: int, reads: int,
         "removed_by_repair": removed_by_repair,
         "removed_by_support": before_support - len(final),
         "support_during_search": support_during_search,
+        "varied_corners": varied_corners,
         "placements": [asdict(placement) for placement in final],
     }
 
@@ -454,13 +457,14 @@ def main() -> int:
     slack.add_argument("--exact-slack", action="store_true")
     parser.add_argument("--require-support", action="store_true")
     parser.add_argument("--support-during-search", action="store_true")
+    parser.add_argument("--varied-corners", action="store_true")
     args = parser.parse_args()
     try:
         report = solve(load_instance(args.dataset), args.cap, args.seed, args.sweeps, args.reads,
                        args.penalty_factor, pool_seed=args.pool_seed, anneal_seed=args.anneal_seed,
                        weight_multiplier=args.weight_multiplier, slack_weight_unit=args.slack_weight_unit,
                        exact_slack=args.exact_slack, require_support=args.require_support,
-                       support_during_search=args.support_during_search)
+                       support_during_search=args.support_during_search, varied_corners=args.varied_corners)
     except (OSError, ValueError, TypeError, KeyError) as error:
         parser.error(str(error))
     print(json.dumps(report, indent=2))

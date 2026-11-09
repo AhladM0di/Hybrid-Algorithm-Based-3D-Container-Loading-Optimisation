@@ -10,11 +10,11 @@ of attempts.
 |---|---|---|
 | 0:00–0:50 | Slides 1–2 and `data/heldout_protocol.json` | Each box has dimensions, weight and allowed rotations. Both methods had 150 ms per trial. |
 | 0:50–2:00 | Extract and validate both saved layout pairs using the commands below | Both results obey the same boundaries, overlap, rotation and payload checks. Utilization is packed volume divided by container volume. |
-| 2:00–3:00 | Slide 3 and the held-out summary | Average three trials within each of 30 cases. Overall, First-Fit averaged 69.41% and the hybrid averaged 68.89%. The paired interval crosses zero. |
+| 2:00–3:00 | Slide 3 and the held-out summary | Average three trials within each of 30 cases. The three-seed 150 ms difference was +0.22 points, with a paired 95% interval of -0.68 to +1.07. |
 | 3:00–4:00 | Slide 4 and [geometry case 4108](figures/packing_4108.png) | Show a recorded geometry trial where First-Fit used more space. Point out the pale-blue free space in the mid-height cross-section. |
 | 4:00–5:00 | Slide 5 and [mixed case 4302](figures/packing_4302.png) | Show a recorded mixed trial where the hybrid used more space. These examples illustrate each outcome. The overall table uses all cases. |
 | 5:00–5:55 | Slide 6 and the [fixed-pool CSV](../results/heldout/geometry_pool_check.csv) | HiGHS proved all 30 geometry pool optima. Missing placements cost 4.55 points on average. Search within the pools cost another 0.21. |
-| 5:55–7:00 | Slide 7 and the [attempt summary](../results/effort/summary.csv) | Under the four-attempt cap, the hybrid averaged 69.26% and First-Fit averaged 67.17%. At 150 ms First-Fit finished about 259 attempts and the hybrid finished about three. A hybrid attempt includes building a pool and searching it. |
+| 5:55–7:00 | Slide 7 and the [attempt summary](../results/effort_v4/summary.csv) | At 150 ms First-Fit averaged 255.2 attempts and the hybrid averaged 2.6. A hybrid attempt includes building a pool and searching it. |
 
 ## Live commands
 
@@ -48,7 +48,7 @@ To show a fresh solver run if time permits, use the extracted geometry input:
 
 ```sh
 python baseline.py "$demo_dir/4108.json" --seconds 0.15 --seed 301
-python hybrid.py "$demo_dir/4108.json" --cap 160 --sweeps 45 --reads 4 --exact-slack
+python hybrid.py "$demo_dir/4108.json" --cap 160 --sweeps 45 --reads 4 --exact-slack --varied-corners
 ```
 
 The last command runs a single hybrid attempt for illustration. The timed

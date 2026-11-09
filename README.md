@@ -1,10 +1,11 @@
 # Hybrid Algorithm-Based 3D Container Loading Optimisation
 
-In the repeatable four-attempt comparison on 30 cases, weight-aware
-First-Fit averaged 67.17% utilization and the hybrid averaged 69.26%.
-The methods do different work per attempt. At 150 ms, the follow-up
-averaged 69.11% for First-Fit and 68.94% for the hybrid, with 259 versus
-three attempts per method on average.
+The hybrid averaged higher utilization on mixed cases at all four common
+limits. Payload cases tied, and the geometry intervals spanned zero.
+Across all 30 cases at 150 ms, the hybrid led by 0.22 percentage points,
+with a paired 95% interval of −0.68 to +1.07. Fixed-attempt and
+wall-clock scores answer different questions because attempts do
+different work.
 
 ## Final deliverables
 
@@ -15,7 +16,7 @@ three attempts per method on average.
 
 ## Evidence and reproduction
 
-- [Fixed-work and budget follow-up](container_loading/docs/effort.md)
+- [Three-seed budget follow-up](container_loading/docs/effort_v4.md)
 - [Setup and reproduction commands](container_loading/README.md)
 - [Held-out and full-support findings](container_loading/docs/heldout.md)
 - [Per-instance results](container_loading/results/heldout/instances.csv) and [HiGHS fixed-pool diagnostics](container_loading/results/heldout/geometry_pool_check.csv)

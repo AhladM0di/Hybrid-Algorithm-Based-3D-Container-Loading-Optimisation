@@ -23,7 +23,7 @@ def expand(qubo, payload: PayloadSlack):
     return coefficients, payload.penalty * payload.capacity**2
 
 
-def run(output: Path):
+def run(output: Path, *, tune=False):
     import neal
 
     data = json.loads(Path("results/heldout/heldout.json").read_text())
@@ -41,31 +41,46 @@ def run(output: Path):
         trial = case["modes"]["brief"]["trials"][0]["hybrid"]
         candidates = generate_candidates(instance, trial["candidate_cap"], trial["pool_seed"])
         qubo = build_qubo(candidates)
-        unit = exact_weight_unit(instance)
+        exact_unit = exact_weight_unit(instance)
         weights = {p.id: p.weight for p in instance.packages}
-        payload = PayloadSlack(tuple(weights[p.package_id] // unit for p in candidates),
-                               instance.container.max_payload // unit, qubo.penalty)
-        coefficients, _ = expand(qubo, payload)
-        scale = max(abs(v) for v in coefficients.values())
-        samples = neal.SimulatedAnnealingSampler().sample_qubo(
-            {key: value / scale for key, value in coefficients.items()},
-            seed=301, num_reads=32, num_sweeps=500,
-        )
-        best_volume = 0
-        raw_valid = 0
-        for sample in samples:
-            raw = tuple(p for i, p in enumerate(candidates) if sample[i])
-            raw_valid += validate_packing(instance, raw).valid
-            result = validate_packing(instance, repair(instance, raw))
-            if not result.valid:
-                raise RuntimeError("Explicit-QUBO sample repair failed")
-            best_volume = max(best_volume, result.metrics.utilization)
-        rows.append({
-            "case": case["seed"], "family": case["family"], "pool_seed": trial["pool_seed"],
-            "placement_bits": len(candidates), "slack_bits": payload.bits, "weight_unit_g": unit,
-            "reads": 32, "sweeps": 500, "raw_valid_reads": raw_valid,
-            "neal_best_after_repair": best_volume, "recorded_compound": trial["metrics"]["utilization"],
-        })
+        units = sorted({exact_unit, 1000}) if tune else [exact_unit]
+        denominators = (1, 100, 10_000, 1_000_000) if tune else (1,)
+        for unit in units:
+            for denominator in denominators:
+                payload = PayloadSlack(
+                    tuple((weights[p.package_id] + unit - 1) // unit for p in candidates),
+                    instance.container.max_payload // unit, max(1, qubo.penalty // denominator),
+                )
+                coefficients, _ = expand(qubo, payload)
+                scale = max(abs(v) for v in coefficients.values())
+                samples = neal.SimulatedAnnealingSampler().sample_qubo(
+                    {key: value / scale for key, value in coefficients.items()},
+                    seed=301, num_reads=32, num_sweeps=500,
+                )
+                best_volume = 0
+                best_raw = None
+                raw_valid = 0
+                for sample in samples:
+                    raw = tuple(p for i, p in enumerate(candidates) if sample[i])
+                    checked = validate_packing(instance, raw)
+                    if checked.valid:
+                        raw_valid += 1
+                        best_raw = max(best_raw or 0, checked.metrics.utilization)
+                    result = validate_packing(instance, repair(instance, raw))
+                    if not result.valid:
+                        raise RuntimeError("Explicit-QUBO sample repair failed")
+                    best_volume = max(best_volume, result.metrics.utilization)
+                row = {
+                    "case": case["seed"], "family": case["family"], "pool_seed": trial["pool_seed"],
+                    "placement_bits": len(candidates), "slack_bits": payload.bits, "weight_unit_g": unit,
+                    "reads": 32, "sweeps": 500, "raw_valid_reads": raw_valid,
+                    "neal_best_after_repair": best_volume, "recorded_compound": trial["metrics"]["utilization"],
+                }
+                if tune:
+                    row.update(penalty_divisor=denominator, coefficient_max=scale,
+                               reward_to_coefficient_ratio=max(qubo.rewards) / scale,
+                               best_raw_valid=best_raw)
+                rows.append(row)
     output.parent.mkdir(parents=True, exist_ok=True)
     with output.open("w", newline="", encoding="utf-8") as file:
         writer = csv.DictWriter(file, fieldnames=list(rows[0]), lineterminator="\n")
@@ -75,5 +90,9 @@ def run(output: Path):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=Path("results/effort/explicit_qubo.csv"))
-    run(parser.parse_args().output)
+    parser.add_argument("--output", type=Path)
+    parser.add_argument("--tune", action="store_true")
+    args = parser.parse_args()
+    output = args.output or Path("results/effort_v4/explicit_qubo_tuning.csv" if args.tune
+                                 else "results/effort/explicit_qubo.csv")
+    run(output, tune=args.tune)

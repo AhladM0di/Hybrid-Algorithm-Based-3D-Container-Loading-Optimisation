@@ -19,11 +19,11 @@ An existing environment with these dependencies also works.
 ## Fixed-work and budget follow-up
 
 ```sh
-python effort_benchmark.py --fixed-only --output reproduced/fixed_work
-python effort_benchmark.py --output reproduced/effort
+python effort_benchmark.py --followup --fixed-only --output reproduced/v4_fixed
+python effort_benchmark.py --followup --output reproduced/v4_sweep
 ```
 
-See the [effort findings](docs/effort.md) for the attempt-count tables,
+See the [three-seed findings](docs/effort_v4.md) for the attempt-count tables,
 weight-aware baseline, mixed pool check and explicit-QUBO reference.
 
 ## Held-out comparison
