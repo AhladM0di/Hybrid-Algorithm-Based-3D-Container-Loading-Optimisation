@@ -1,0 +1,9 @@
+{
+  "instances": "heldout_protocol.json",
+  "trial_seeds": [301, 302, 303, 304, 305],
+  "scoring_cutoff_seconds": 0.15,
+  "first_fit": {"weight_aware": true},
+  "hybrid": {"cap": 160, "sweeps": 45, "reads": 4, "varied_corners": true},
+  "bootstrap_seed": 9503,
+  "bootstrap_draws": 5000
+}

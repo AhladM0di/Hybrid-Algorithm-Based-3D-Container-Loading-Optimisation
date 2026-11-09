@@ -1,11 +1,6 @@
 # Hybrid Algorithm-Based 3D Container Loading Optimisation
 
-The hybrid averaged higher utilization on mixed cases at all four common
-limits. Payload cases tied, and the geometry intervals spanned zero.
-Across all 30 cases at 150 ms, the hybrid led by 0.22 percentage points,
-with a paired 95% interval of −0.68 to +1.07. Fixed-attempt and
-wall-clock scores answer different questions because attempts do
-different work.
+At the 150 ms scoring cutoff, the hybrid-minus-First-Fit difference was +0.48 percentage points (paired 95% interval -0.32 to +1.26). The main comparison uses five trials per case against weight-aware multi-start First-Fit. These are reused development cases, so the result is exploratory and does not establish an overall improvement. The cutoff determines which packings count toward the score. Measured elapsed time includes late attempts.
 
 ## Final deliverables
 
@@ -16,7 +11,8 @@ different work.
 
 ## Evidence and reproduction
 
-- [Three-seed budget follow-up](container_loading/docs/effort_v4.md)
+- [Main five-trial v4 comparison](container_loading/results/main_v4/summary.csv) and [paired intervals](container_loading/results/main_v4/intervals.csv)
+- [Earlier three-seed budget follow-up](container_loading/docs/effort_v4.md)
 - [Setup and reproduction commands](container_loading/README.md)
 - [Held-out and full-support findings](container_loading/docs/heldout.md)
 - [Per-instance results](container_loading/results/heldout/instances.csv) and [HiGHS fixed-pool diagnostics](container_loading/results/heldout/geometry_pool_check.csv)
@@ -25,3 +21,5 @@ different work.
 
 The [v1 archive](container_loading/docs/archive/v1/) holds the initial report
 and presentation materials.
+
+The current submission is [the five-trial ZIP](container-loading-submission-v4-five-trial.zip). Older ZIPs are retained in `submission_archive/`.

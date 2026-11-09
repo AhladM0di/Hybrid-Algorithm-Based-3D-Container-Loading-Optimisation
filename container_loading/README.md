@@ -1,8 +1,11 @@
 # Hybrid Algorithm-Based 3D Container Loading Optimisation
 
-Compare a deterministic First-Fit Decreasing baseline with a hybrid solver
-that searches a pool of possible box placements. The revised experiment
-separates candidate coverage, search quality and payload repair.
+The project implements a deterministic First-Fit Decreasing reference and a
+hybrid solver that searches a pool of possible box placements. The main
+five-trial comparison uses a stronger weight-aware multi-start First-Fit
+comparator. “First-Fit” in its saved CSV files means this enhanced method.
+See the [deterministic reference](docs/deterministic_reference.md) for the
+single-pass baseline on exactly the same inputs.
 
 ## Environment
 
@@ -16,7 +19,31 @@ python -m pip install -r requirements.txt
 
 An existing environment with these dependencies also works.
 
-## Fixed-work and budget follow-up
+## Main five-trial v4 comparison
+
+```sh
+python main_comparison.py --output reproduced/main_v4
+```
+
+The [frozen main protocol](data/main_comparison_protocol.json) uses seeds
+301–305. The 150 ms cutoff scores only results validated in time.
+Recorded elapsed time includes any late attempt that finishes after it.
+See the [main metrics table](docs/demo.md#main-v4-comparison),
+[paired intervals](results/main_v4/intervals.csv) and
+[best trial by case](results/main_v4/instances.csv).
+
+These 30 cases were reused during development. The main comparison is
+exploratory evidence on those cases, not a fresh held-out evaluation.
+Five trials improve repeatability; they do not establish generalization.
+The overall paired interval includes zero, so an overall improvement is
+not established. A new test set with settings fixed in advance is needed.
+
+New runs save full inputs, environment versions and source hashes in
+`packings.json`, plus `deterministic_reference.csv`. The original main run
+did not record its environment: the saved result explicitly marks it unknown.
+Its inputs were reconstructed and checked against the earlier saved cases.
+
+## Earlier fixed-work and budget follow-up
 
 ```sh
 python effort_benchmark.py --followup --fixed-only --output reproduced/v4_fixed
@@ -146,3 +173,14 @@ python qpu_benchmark.py --output reproduced/hardware.json
 The last command uses the saved IBM Quantum account and consumes hardware
 allocation. It checks H0 first, then runs H1 and H2 before H3. Rerun with
 the same output file and shot count to resume saved jobs.
+
+## Submission and report sources
+
+The current archive is `../container-loading-submission-v4-five-trial.zip`.
+Older archives are retained in `../submission_archive/` and are historical.
+See [the model specification](docs/model.md) for the QUBO equation, penalties
+and dataset generation, and [the review fixes](docs/review_fixes.md) for provenance.
+
+Rebuild the current archive with `python build_submission.py`. It verifies
+each packaged file against the included SHA-256 inventory. Report source
+and rebuild instructions are in `docs/source/`.

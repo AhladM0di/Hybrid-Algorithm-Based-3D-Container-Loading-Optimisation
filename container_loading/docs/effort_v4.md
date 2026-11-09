@@ -1,4 +1,6 @@
-# Three-Seed Effort Follow-up
+# Earlier Three-Seed Effort Follow-up
+
+The [five-trial v4 comparison](demo.md#main-v4-comparison) is the main result.
 
 The same 30 cases were rerun with all three frozen trial seeds. This
 follow-up enables varied corner priorities in the hybrid, keeps the
