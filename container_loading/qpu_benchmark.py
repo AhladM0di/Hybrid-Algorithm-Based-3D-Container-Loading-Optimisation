@@ -2,7 +2,6 @@
 
 import argparse
 from collections import Counter
-from dataclasses import asdict
 from math import prod
 import json
 from pathlib import Path
@@ -51,7 +50,7 @@ def run(output: Path, repetitions: int, shots: int, backend_name: str | None, ti
     reference = json.loads((Path(__file__).resolve().parent / "data/hardware_reference.json").read_text())
     cases = fixtures()
     for name, fixture in cases.items():
-        for key, value in json.loads(json.dumps(asdict(fixture))).items():
+        for key, value in json.loads(json.dumps(fixture.manifest())).items():
             if value != reference[name][key]:
                 raise RuntimeError(f"{name} differs from frozen hardware reference")
 

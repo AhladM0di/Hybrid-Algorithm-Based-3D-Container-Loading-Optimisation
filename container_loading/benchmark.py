@@ -12,7 +12,7 @@ from math import prod
 from baseline import baseline_report
 from check_packing import load_instance, load_placements
 from feasibility import validate_packing
-from hybrid import solve
+from hybrid import anneal, greedy_repair, solve
 from reference_solver import compare_pool
 
 
@@ -103,7 +103,8 @@ def run(output: Path) -> None:
 
         baselines = [baseline_report(instance) for _ in range(20)]
         baseline = baselines[0]
-        hybrid_runs = [solve(instance, cap=240, seed=seed, sweeps=200, reads=16) for seed in range(5)]
+        hybrid_runs = [solve(instance, cap=240, seed=seed, sweeps=200, reads=16,
+                             sampler=anneal, repairer=greedy_repair) for seed in range(5)]
         for report in (*baselines, *hybrid_runs):
             if not report["valid"]:
                 raise RuntimeError(f"Invalid final packing in {name}")
@@ -117,7 +118,8 @@ def run(output: Path) -> None:
 
         best = max(hybrid_runs, key=lambda report: report["metrics"]["packed_volume"])
         repeated = solve(instance, cap=best["candidate_cap"], seed=best["seed"],
-                         sweeps=best["sweeps"], reads=best["reads"])
+                         sweeps=best["sweeps"], reads=best["reads"],
+                         sampler=anneal, repairer=greedy_repair)
         for field in ("placements", "raw_placements", "raw_energy", "metrics"):
             if repeated[field] != best[field]:
                 raise RuntimeError(f"Could not reproduce {field} for {name}")
@@ -160,7 +162,7 @@ def run(output: Path) -> None:
                         (240, 1.0, 400, 16), (240, 1.0, 200, 32))
             for cap, penalty, sweeps, reads in settings:
                 run = solve(instance, cap=cap, seed=0, sweeps=sweeps, reads=reads,
-                            penalty_factor=penalty)
+                            penalty_factor=penalty, sampler=anneal, repairer=greedy_repair)
                 tuning_rows.append({
                     "case": name, "cap": cap, "penalty_factor": penalty, "sweeps": sweeps, "reads": reads,
                     "utilization": run["metrics"]["utilization"], "runtime_seconds": run["runtime_seconds"],

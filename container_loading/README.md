@@ -28,6 +28,26 @@ below it. Support is a diagnostic. The feasibility rules cover geometry
 and payload, with load-bearing, weight distribution and cargo securing
 outside the model.
 
+## Payload and search ablation
+
+```sh
+python payload_experiment.py --output reproduced/payload_ablation
+```
+
+This experiment crosses five candidate-pool seeds with three search seeds
+on the 20-box case and the two tight geometry cases. It compares greedy
+repair with exact payload repair, single flips with compound swaps, global
+with per-pair penalties for single flips, and two ways to include weight
+in the search. See the [ablation findings](docs/payload_ablation.md).
+
+The hybrid CLI now uses compound swaps and exact payload repair by default.
+Use `--pool-seed` and `--anneal-seed` for separate seeds. Add
+`--weight-multiplier 0.5` for a volume-per-gram price or
+`--slack-weight-unit 10000` for the squared payload penalty in 10 kg
+units. The slack variant minimizes over the slack bits for each
+classical move. It rounds weights up and capacity down, then validates
+the result using the original gram values.
+
 ## Run either solver
 
 ```sh
@@ -43,14 +63,14 @@ descending volume order with ties broken by package ID.
 The hybrid builds separate layouts using longest-edge, smallest-volume
 and seeded shuffled orders. Each layout gets its own set of candidate
 corners. The pool combines placements from these layouts up to the cap.
-Each selected candidate earns its volume. Each overlapping or duplicate
-pair costs a penalty greater than the largest single reward. A seeded
-annealer returns its best raw state. Repair checks the shared constraints,
-including total payload, and the output records pre-repair violations and
-removals. The QUBO itself covers geometry and package uniqueness. Payload
-enters the independent integer-programming reference as a separate
-constraint, so the benchmark can measure how much a weight-aware search
-could improve within the same pool.
+Each selected candidate earns its volume before any optional weight
+price. Each overlapping or duplicate pair carries a conflict penalty.
+Compound swaps replace a candidate's selected blockers in one move.
+The cooling range comes from sampled energy changes. Exact repair first
+resolves any geometric conflicts, then maximizes volume within payload
+over the remaining selected placements. The output includes pre-repair
+violations and removals. The original five-case benchmark keeps the
+single-flip and greedy configuration for comparison.
 
 `reference_solver.py` uses SciPy/HiGHS to cross-check the QUBO optimum
 and find the best payload-feasible packing on the same seed-0 pool. The

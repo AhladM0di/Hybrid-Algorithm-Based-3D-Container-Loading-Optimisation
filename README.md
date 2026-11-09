@@ -5,6 +5,7 @@ search. The revised experiment builds candidates independently of the
 baseline and checks search quality against a separate integer solver.
 
 - [Setup and reproduction commands](container_loading/README.md)
+- [Payload and search ablation](container_loading/docs/payload_ablation.md)
 - [Revised findings](container_loading/docs/revised_experiment.md)
 - [Revised benchmark results](container_loading/results/revised/benchmark.csv)
 - [Revised 3D packing comparison](container_loading/results/revised/packing_packages_20.png)

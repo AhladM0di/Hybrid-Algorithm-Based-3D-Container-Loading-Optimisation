@@ -1,9 +1,11 @@
+from fractions import Fraction
 from itertools import product
 import unittest
 
 from feasibility import Container, Instance, Package, Placement, validate_packing
 from hardware_fixtures import decode_bitstring, exact_reference, fixtures
-from hybrid import anneal, build_qubo, generate_candidates, repair, solve
+from hybrid import (PayloadSlack, anneal, build_qubo, compound_anneal, critical_weight_price,
+                    generate_candidates, greedy_repair, repair, solve)
 from reference_solver import _optimize
 
 
@@ -77,6 +79,42 @@ class HybridTests(unittest.TestCase):
         self.assertTrue(payload_aware["optimal"])
         self.assertEqual(geometry_only["volume"], 16)
         self.assertEqual(payload_aware["volume"], 8)
+
+    def test_exact_payload_repair_beats_largest_first(self):
+        packages = (
+            Package("A", (5, 1, 1), 6, False),
+            Package("B", (4, 1, 1), 5, False),
+            Package("C", (4, 1, 1), 5, False),
+        )
+        instance = Instance(Container((13, 1, 1), 10), packages)
+        placements = tuple(
+            Placement(package.id, (x, 0, 0), package.dimensions)
+            for x, package in zip((0, 5, 9), packages)
+        )
+        self.assertEqual(greedy_repair(instance, placements), placements[:1])
+        self.assertEqual(repair(instance, placements), placements[1:])
+        self.assertEqual(critical_weight_price(instance), Fraction(4, 5))
+
+    def test_compound_search_and_pairwise_ising(self):
+        fixture = self.fixtures["H1"]
+        qubo = build_qubo(fixture.candidates, pairwise=True)
+        self.assertEqual(qubo.pair_penalties, (4, 4))
+        self.assertEqual(compound_anneal(qubo, 0, 40, 4), (0, 1, 1))
+        offset, fields, couplings = qubo.ising()
+        for bits in product((0, 1), repeat=3):
+            z = [1 - 2 * bit for bit in bits]
+            self.assertEqual(
+                qubo.energy(bits),
+                offset + sum(field * value for field, value in zip(fields, z))
+                + sum(coupling * z[i] * z[j] for i, j, coupling in couplings),
+            )
+
+    def test_slack_residual_matches_binary_minimum(self):
+        payload = PayloadSlack((2, 3), 4, 7)
+        self.assertEqual(payload.bits, 3)
+        for used in range(8):
+            explicit = min(7 * (used + slack - 4) ** 2 for slack in range(2 ** payload.bits))
+            self.assertEqual(payload.energy(used), explicit)
 
     def test_seeded_solver_and_measurement_order(self):
         self.assertEqual(decode_bitstring("01"), (1, 0))

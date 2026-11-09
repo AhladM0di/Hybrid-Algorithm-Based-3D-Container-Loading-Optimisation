@@ -1,7 +1,7 @@
 """Prepare small exact-solvable fixtures and depth-1 QAOA circuits for IBM QPUs."""
 
 from collections.abc import Sequence
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from itertools import product
 import json
 from math import pi
@@ -17,6 +17,14 @@ class Fixture:
     instance: Instance
     candidates: tuple[Placement, ...]
     qubo: Qubo
+
+
+    def manifest(self) -> dict:
+        record = asdict(self)
+        # The recorded hardware fixtures use a single global penalty.
+        if not record["qubo"]["pair_penalties"]:
+            del record["qubo"]["pair_penalties"]
+        return record
 
 
 def fixtures() -> dict[str, Fixture]:
@@ -120,8 +128,6 @@ def tune_angles(qubo: Qubo) -> tuple[float, float]:
 
 def ideal_reference() -> dict:
     """Record the candidate order, objective, and ideal-circuit configuration."""
-    from dataclasses import asdict
-
     from qiskit.quantum_info import Statevector
 
     mapping = mapping_circuit().remove_final_measurements(inplace=False)
@@ -141,7 +147,7 @@ def ideal_reference() -> dict:
             if fixture.qubo.energy(decode_bitstring(register)) == exact_energy
         )
         report[name] = {
-            **asdict(fixture),
+            **fixture.manifest(),
             "exact_qubo_energy": exact_energy,
             "exact_feasible_volume": exact_volume,
             "gamma": gamma,
