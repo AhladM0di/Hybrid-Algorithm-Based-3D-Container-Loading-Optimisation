@@ -4,6 +4,7 @@ This project compares a classical box-packing method with a hybrid QUBO
 search. The revised experiment builds candidates independently of the
 baseline and checks search quality against a separate integer solver.
 
+- [Held-out comparison and support results](container_loading/docs/heldout.md)
 - [Setup and reproduction commands](container_loading/README.md)
 - [Payload and search ablation](container_loading/docs/payload_ablation.md)
 - [Revised findings](container_loading/docs/revised_experiment.md)

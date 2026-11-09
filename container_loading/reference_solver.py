@@ -1,18 +1,18 @@
 """Independent HiGHS integer-programming reference for a fixed candidate pool."""
 
-from math import prod
+from math import ceil, prod
 
 from hybrid import build_qubo, generate_candidates
 
 
-def _optimize(candidates, qubo, instance=None):
+def _optimize(candidates, qubo, instance=None, *, time_limit=4.0):
     import numpy as np
     from scipy.optimize import Bounds, LinearConstraint, milp
     from scipy.sparse import coo_matrix
 
     count = len(candidates)
     if count == 0:
-        return {"volume": 0, "upper_bound": 0, "optimal": True, "selected": []}
+        return {"volume": 0, "upper_bound": 0, "optimal": True, "selected": [], "solver_status": 0}
     # The QUBO's penalty exceeds every reward, so no optimum selects a conflict.
     row, col, values, limits = [], [], [], []
     for index, (i, j) in enumerate(qubo.conflicts):
@@ -33,15 +33,16 @@ def _optimize(candidates, qubo, instance=None):
         integrality=np.ones(count),
         bounds=Bounds(0, 1),
         constraints=LinearConstraint(matrix, -np.inf, limits),
-        options={"time_limit": 4.0, "mip_rel_gap": 0},
+        options={"time_limit": time_limit, "mip_rel_gap": 0},
     )
     selected = [] if result.x is None else [index for index, value in enumerate(result.x) if value > .5]
     volume = sum(qubo.rewards[index] for index in selected)
     bound = getattr(result, "mip_dual_bound", None)
     return {
         "volume": volume,
-        "upper_bound": max(volume, round(-bound * scale)) if bound is not None else None,
+        "upper_bound": max(volume, ceil(-bound * scale)) if bound is not None else None,
         "optimal": result.status == 0,
+        "solver_status": result.status,
         "selected": selected,
     }
 

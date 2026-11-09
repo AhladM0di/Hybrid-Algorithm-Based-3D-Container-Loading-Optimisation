@@ -34,9 +34,11 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("dataset", type=Path)
     parser.add_argument("packing", type=Path)
+    parser.add_argument("--require-support", action="store_true")
     args = parser.parse_args()
     try:
-        result = validate_packing(load_instance(args.dataset), load_placements(args.packing))
+        result = validate_packing(load_instance(args.dataset), load_placements(args.packing),
+                                  require_support=args.require_support)
     except (OSError, ValueError, TypeError, KeyError) as error:
         parser.error(str(error))
     print(json.dumps({"valid": result.valid, **asdict(result)}, indent=2))

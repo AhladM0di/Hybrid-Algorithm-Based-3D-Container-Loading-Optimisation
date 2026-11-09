@@ -1,0 +1,4 @@
+case,variant,runs,utilization_mean,utilization_best,runtime_seconds_mean,raw_invalid,repair_removals,certified_search_ratios,search_quality_mean
+packages_20,compound_slack_exact,15,0.5897524495269939,0.6111683643984809,0.16934983873118956,0,0,15,0.9925238913167267
+geometry_10,compound_slack_exact,15,1.0,1.0,0.145567341533994,0,0,15,1.0
+geometry_15,compound_slack_exact,15,1.0,1.0,0.14638291933418562,0,0,15,1.0

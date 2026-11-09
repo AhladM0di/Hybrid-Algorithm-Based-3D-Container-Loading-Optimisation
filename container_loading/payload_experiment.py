@@ -37,7 +37,9 @@ def weight_only_bound(instance):
     return min(max(states.values()), prod(instance.container.dimensions))
 
 
-def run(output: Path, pool_count: int, seed_count: int, sweeps: int, reads: int) -> None:
+def run(output: Path, pool_count: int, seed_count: int, sweeps: int, reads: int, *,
+        exact_slack_only: bool = False) -> None:
+    variants = (("compound_slack_exact", compound_anneal, repair, 0, False, None),) if exact_slack_only else VARIANTS
     output.mkdir(parents=True, exist_ok=True)
     data = Path(__file__).resolve().parent / "data"
     cases = {}
@@ -55,10 +57,11 @@ def run(output: Path, pool_count: int, seed_count: int, sweeps: int, reads: int)
         for pool_seed in range(pool_count):
             runs = []
             for anneal_seed in range(seed_count):
-                for label, sampler, repairer, multiplier, pairwise, slack_unit in VARIANTS:
+                for label, sampler, repairer, multiplier, pairwise, slack_unit in variants:
                     report = solve(instance, cap=240, seed=0, pool_seed=pool_seed, anneal_seed=anneal_seed,
                                    sweeps=sweeps, reads=reads, sampler=sampler, repairer=repairer,
-                                   weight_multiplier=multiplier, pairwise=pairwise, slack_weight_unit=slack_unit)
+                                   weight_multiplier=multiplier, pairwise=pairwise, slack_weight_unit=slack_unit,
+                                   exact_slack=exact_slack_only)
                     if not report["valid"]:
                         raise RuntimeError(f"Invalid repaired packing for {case}/{label}")
                     runs.append({"variant": label, **report})
@@ -79,7 +82,7 @@ def run(output: Path, pool_count: int, seed_count: int, sweeps: int, reads: int)
             })
             print(f"{case} pool {pool_seed + 1}/{pool_count}", flush=True)
         cases[case] = {"baseline": baseline, "full_instance_upper_bound_mm3": bound, "pools": pools}
-        for label, *_ in VARIANTS:
+        for label, *_ in variants:
             runs = [run for pool in pools for run in pool["runs"] if run["variant"] == label]
             ratios = [run["search_quality"] for run in runs if run["search_quality"] is not None]
             summary.append({
@@ -107,7 +110,8 @@ def run(output: Path, pool_count: int, seed_count: int, sweeps: int, reads: int)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=Path("results/payload_ablation"))
+    parser.add_argument("--output", type=Path)
+    parser.add_argument("--exact-slack-only", action="store_true")
     parser.add_argument("--pools", type=int, default=5)
     parser.add_argument("--seeds", type=int, default=3)
     parser.add_argument("--sweeps", type=int, default=80)
@@ -115,4 +119,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
     if min(args.pools, args.seeds, args.sweeps, args.reads) < 1:
         parser.error("Pool count, seed count, sweeps and reads must be positive")
-    run(args.output, args.pools, args.seeds, args.sweeps, args.reads)
+    output = args.output or Path("results/exact_slack" if args.exact_slack_only else "results/payload_ablation")
+    run(output, args.pools, args.seeds, args.sweeps, args.reads, exact_slack_only=args.exact_slack_only)

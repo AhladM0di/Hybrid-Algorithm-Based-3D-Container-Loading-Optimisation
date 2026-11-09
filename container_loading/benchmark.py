@@ -11,27 +11,21 @@ from math import prod
 
 from baseline import baseline_report
 from check_packing import load_instance, load_placements
-from feasibility import validate_packing
+from feasibility import Placement, supported_area, validate_packing
 from hybrid import anneal, greedy_repair, solve
 from reference_solver import compare_pool
 
 
 def support_fractions(placements):
     """Measure the bottom-face area touching the floor or boxes directly beneath it."""
-    fractions = {}
-    for box in placements:
-        x, y, z = box["position"]
-        length, width, _ = box["dimensions"]
-        supported = 0
-        for below in placements:
-            bx, by, bz = below["position"]
-            bl, bw, bh = below["dimensions"]
-            if bz + bh == z:
-                dx = max(0, min(x + length, bx + bl) - max(x, bx))
-                dy = max(0, min(y + width, by + bw) - max(y, by))
-                supported += dx * dy
-        fractions[box["package_id"]] = 1.0 if z == 0 else supported / (length * width)
-    return fractions
+    boxes = tuple(
+        Placement(record["package_id"], tuple(record["position"]), tuple(record["dimensions"]))
+        for record in placements
+    )
+    return {
+        box.package_id: supported_area(box, boxes) / (box.dimensions[0] * box.dimensions[1])
+        for box in boxes
+    }
 
 
 def plot_comparison(path, instance, baseline, hybrid):

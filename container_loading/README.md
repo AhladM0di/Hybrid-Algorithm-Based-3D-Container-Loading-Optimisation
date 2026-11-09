@@ -4,6 +4,26 @@ Compare a deterministic First-Fit Decreasing baseline with a hybrid solver
 that searches a pool of possible box placements. The revised experiment
 separates candidate coverage, search quality and payload repair.
 
+## Held-out comparison
+
+```sh
+conda activate cwq
+python heldout_benchmark.py --output reproduced/heldout
+python heldout_benchmark.py --support-search --output reproduced/support_search
+python payload_experiment.py --exact-slack-only --output reproduced/exact_slack
+```
+
+The held-out protocol fixes the generators, solver settings, and a 150 ms
+budget for each method. The comparison uses 30 instances, averages three
+trials within each instance, and reports paired results. Full-base support
+is a separate benchmark mode. See the [held-out findings](docs/heldout.md).
+
+For an individual run, use `baseline.py DATASET --seconds 0.15 --seed 301`
+for multi-start First-Fit or `hybrid.py DATASET --exact-slack` for exact
+weight units. Both accept `--require-support`, as does `check_packing.py`. Add
+`--support-during-search` to the hybrid to reject moves that would leave
+a box unsupported. This option requires `--require-support`.
+
 ## Reproduce the revised experiment
 
 Use Python 3.13 in the project environment. Run from this directory.
@@ -43,10 +63,11 @@ in the search. See the [ablation findings](docs/payload_ablation.md).
 The hybrid CLI now uses compound swaps and exact payload repair by default.
 Use `--pool-seed` and `--anneal-seed` for separate seeds. Add
 `--weight-multiplier 0.5` for a volume-per-gram price or
-`--slack-weight-unit 10000` for the squared payload penalty in 10 kg
-units. The slack variant minimizes over the slack bits for each
-classical move. It rounds weights up and capacity down, then validates
-the result using the original gram values.
+`--exact-slack` for the squared payload penalty with exact weights.
+The exact unit is the greatest common divisor of package weights and
+payload capacity in grams. The slack variant minimizes over the slack
+bits for each classical move. The earlier ablation keeps its historical
+10 kg configuration for comparison.
 
 ## Run either solver
 

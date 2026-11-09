@@ -7,14 +7,14 @@ from fractions import Fraction
 from functools import partial
 from itertools import combinations, product
 import json
-from math import exp, log, prod
+from math import exp, gcd, log, prod
 from statistics import median
 from pathlib import Path
 from random import Random
 from time import perf_counter
 
 from check_packing import load_instance
-from feasibility import Instance, Package, Placement, overlaps, validate_packing
+from feasibility import Instance, Package, Placement, fully_supported, overlaps, supported_area, validate_packing
 
 
 @dataclass(frozen=True)
@@ -48,7 +48,7 @@ class Qubo:
         return offset, tuple(fields), tuple(couplings)
 
 
-def _layout(instance: Instance, packages: Sequence[Package], rng: Random | None):
+def _layout(instance: Instance, packages: Sequence[Package], rng: Random | None, require_support: bool = False):
     """Build one geometric layout using corners created within this run."""
     placed = []
     points = {(0, 0, 0)}
@@ -65,6 +65,8 @@ def _layout(instance: Instance, packages: Sequence[Package], rng: Random | None)
                 continue
             if any(overlaps(candidate, other) for other in placed):
                 continue
+            if require_support and not fully_supported(candidate, placed):
+                continue
             placed.append(candidate)
             for axis in range(3):
                 point = list(position)
@@ -75,7 +77,8 @@ def _layout(instance: Instance, packages: Sequence[Package], rng: Random | None)
             break
 
 
-def generate_candidates(instance: Instance, cap: int, seed: int = 0) -> tuple[Placement, ...]:
+def generate_candidates(instance: Instance, cap: int, seed: int = 0, *,
+                        require_support: bool = False) -> tuple[Placement, ...]:
     """Mix independently constructed layouts without seeding from the baseline."""
     if cap < 1:
         raise ValueError("Candidate cap must be positive")
@@ -94,7 +97,7 @@ def generate_candidates(instance: Instance, cap: int, seed: int = 0) -> tuple[Pl
         rng.shuffle(order)
         orders.append((order, Random(rng.getrandbits(64))))
     for order, layout_rng in orders:
-        for candidate in _layout(instance, order, layout_rng):
+        for candidate in _layout(instance, order, layout_rng, require_support):
             candidates[candidate] = None
             if len(candidates) == cap:
                 return tuple(candidates)
@@ -175,7 +178,8 @@ class PayloadSlack:
 
 
 def compound_anneal(qubo: Qubo, seed: int, sweeps: int, reads: int, *,
-                    payload: PayloadSlack | None = None) -> tuple[int, ...]:
+                    payload: PayloadSlack | None = None,
+                    support_candidates: tuple[Placement, ...] | None = None) -> tuple[int, ...]:
     """Search conflict-free states with insertions, removals and compound swaps."""
     if sweeps < 1 or reads < 1:
         raise ValueError("Sweeps and reads must be positive")
@@ -185,6 +189,28 @@ def compound_anneal(qubo: Qubo, seed: int, sweeps: int, reads: int, *,
     for i, j in qubo.conflicts:
         neighbors[i].add(j)
         neighbors[j].add(i)
+
+    support_areas = {}
+    if support_candidates is not None:
+        for i, placement in enumerate(support_candidates):
+            if placement.position[2] > 0:
+                contacts = {}
+                for j, other in enumerate(support_candidates):
+                    area = supported_area(placement, (other,))
+                    if area:
+                        contacts[j] = area
+                support_areas[i] = (placement.dimensions[0] * placement.dimensions[1], contacts)
+
+    def preserves_support(selected, blocking, inserted):
+        if support_candidates is None:
+            return True
+        proposed = selected - blocking
+        if inserted is not None:
+            proposed.add(inserted)
+        return all(
+            sum(area for j, area in support_areas[i][1].items() if j in proposed) == support_areas[i][0]
+            for i in proposed if i in support_areas
+        )
 
     def move(i, blocking, inserting, weight):
         delta = sum(qubo.rewards[j] for j in blocking)
@@ -208,7 +234,7 @@ def compound_anneal(qubo: Qubo, seed: int, sweeps: int, reads: int, *,
             delta, new_weight = move(i, blocking, True, weight)
             if delta:
                 costs.append(abs(delta))
-            if not blocking and delta < 0:
+            if not blocking and delta < 0 and preserves_support(selected, blocking, i):
                 selected.add(i)
                 weight = new_weight
     hot = median(costs) / -log(.8) if costs else 1.0
@@ -228,6 +254,8 @@ def compound_anneal(qubo: Qubo, seed: int, sweeps: int, reads: int, *,
                 blocking = {i} if removing else neighbors[i] & selected
                 delta, new_weight = move(i, blocking, not removing, weight)
                 if delta <= 0 or rng.random() < exp(-delta / temperature):
+                    if not preserves_support(selected, blocking, None if removing else i):
+                        continue
                     selected.difference_update(blocking)
                     if not removing:
                         selected.add(i)
@@ -243,7 +271,7 @@ def compound_anneal(qubo: Qubo, seed: int, sweeps: int, reads: int, *,
             removing = i in best
             blocking = {i} if removing else neighbors[i] & best
             delta, new_weight = move(i, blocking, not removing, best_weight)
-            if delta < 0:
+            if delta < 0 and preserves_support(best, blocking, None if removing else i):
                 best.difference_update(blocking)
                 if not removing:
                     best.add(i)
@@ -305,17 +333,31 @@ def repair(instance: Instance, selected: Sequence[Placement]) -> tuple[Placement
     return max(states.values(), key=lambda state: state[0])[1]
 
 
+def exact_weight_unit(instance: Instance) -> int:
+    """Largest unit that represents all original gram weights exactly."""
+    return gcd(instance.container.max_payload, *(p.weight for p in instance.packages)) or 1
+
+
+def remove_unsupported(placements: Sequence[Placement]) -> tuple[Placement, ...]:
+    kept = []
+    for placement in sorted(placements, key=lambda p: p.position[2]):
+        if fully_supported(placement, kept):
+            kept.append(placement)
+    return tuple(kept)
+
+
 def solve(instance: Instance, cap: int, seed: int, sweeps: int, reads: int,
           penalty_factor: float = 1.0, sampler=compound_anneal, *,
           pool_seed: int | None = None, anneal_seed: int | None = None,
           weight_multiplier: float = 0, repairer=repair, pairwise: bool = False,
-          slack_weight_unit: int | None = None) -> dict:
+          slack_weight_unit: int | None = None, exact_slack: bool = False,
+          require_support: bool = False, support_during_search: bool = False) -> dict:
     started = perf_counter()
     pool_seed = seed if pool_seed is None else pool_seed
     anneal_seed = seed if anneal_seed is None else anneal_seed
     if weight_multiplier < 0:
         raise ValueError("Weight multiplier must be nonnegative")
-    candidates = generate_candidates(instance, cap, pool_seed)
+    candidates = generate_candidates(instance, cap, pool_seed, require_support=require_support)
     price = critical_weight_price(instance) * Fraction(str(weight_multiplier))
     weights = {package.id: package.weight for package in instance.packages}
     rewards = tuple(round(prod(p.dimensions) - price * weights[p.package_id]) for p in candidates)
@@ -323,6 +365,10 @@ def solve(instance: Instance, cap: int, seed: int, sweeps: int, reads: int,
     qubo = build_qubo(candidates, int(max(0, largest_reward) * penalty_factor) + 1,
                       rewards=rewards, pairwise=pairwise)
     payload = None
+    if support_during_search and (not require_support or sampler is not compound_anneal):
+        raise ValueError("Support-aware search requires support mode and compound search")
+    if exact_slack:
+        slack_weight_unit = exact_weight_unit(instance)
     if slack_weight_unit is not None:
         if slack_weight_unit < 1 or sampler is not compound_anneal or weight_multiplier:
             raise ValueError("Slack requires a positive weight unit and unpriced compound search")
@@ -332,14 +378,20 @@ def solve(instance: Instance, cap: int, seed: int, sweeps: int, reads: int,
             max(0, largest_reward) + 1,
         )
         sampler = partial(sampler, payload=payload)
+    if support_during_search:
+        sampler = partial(sampler, support_candidates=candidates)
     anneal_started = perf_counter()
     bits = sampler(qubo, anneal_seed, sweeps, reads)
     annealing_seconds = perf_counter() - anneal_started
 
     raw = tuple(candidate for candidate, bit in zip(candidates, bits) if bit)
-    raw_result = validate_packing(instance, raw)
+    raw_result = validate_packing(instance, raw, require_support=require_support)
     final = repairer(instance, raw)
-    result = validate_packing(instance, final)
+    removed_by_repair = len(raw) - len(final)
+    before_support = len(final)
+    if require_support:
+        final = remove_unsupported(final)
+    result = validate_packing(instance, final, require_support=require_support)
     return {
         "valid": result.valid,
         **asdict(result),
@@ -367,7 +419,9 @@ def solve(instance: Instance, cap: int, seed: int, sweeps: int, reads: int,
         "raw_valid": raw_result.valid,
         "raw_violations": raw_result.violations,
         "raw_placements": [asdict(placement) for placement in raw],
-        "removed_by_repair": len(raw) - len(final),
+        "removed_by_repair": removed_by_repair,
+        "removed_by_support": before_support - len(final),
+        "support_during_search": support_during_search,
         "placements": [asdict(placement) for placement in final],
     }
 
@@ -383,12 +437,18 @@ def main() -> int:
     parser.add_argument("--pool-seed", type=int)
     parser.add_argument("--anneal-seed", type=int)
     parser.add_argument("--weight-multiplier", type=float, default=0)
-    parser.add_argument("--slack-weight-unit", type=int)
+    slack = parser.add_mutually_exclusive_group()
+    slack.add_argument("--slack-weight-unit", type=int)
+    slack.add_argument("--exact-slack", action="store_true")
+    parser.add_argument("--require-support", action="store_true")
+    parser.add_argument("--support-during-search", action="store_true")
     args = parser.parse_args()
     try:
         report = solve(load_instance(args.dataset), args.cap, args.seed, args.sweeps, args.reads,
                        args.penalty_factor, pool_seed=args.pool_seed, anneal_seed=args.anneal_seed,
-                       weight_multiplier=args.weight_multiplier, slack_weight_unit=args.slack_weight_unit)
+                       weight_multiplier=args.weight_multiplier, slack_weight_unit=args.slack_weight_unit,
+                       exact_slack=args.exact_slack, require_support=args.require_support,
+                       support_during_search=args.support_during_search)
     except (OSError, ValueError, TypeError, KeyError) as error:
         parser.error(str(error))
     print(json.dumps(report, indent=2))

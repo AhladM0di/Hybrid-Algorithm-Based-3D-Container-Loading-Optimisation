@@ -1,5 +1,6 @@
 """Axis-aligned packing models and shared feasibility checks."""
 
+from collections.abc import Iterable
 from dataclasses import dataclass
 from itertools import combinations, permutations
 from math import prod
@@ -105,7 +106,27 @@ def overlaps(first: Placement, second: Placement) -> bool:
     )
 
 
-def validate_packing(instance: Instance, placements: tuple[Placement, ...]) -> ValidationResult:
+def supported_area(placement: Placement, others: Iterable[Placement]) -> int:
+    """Area touching the floor or the tops of non-overlapping boxes below."""
+    x, y, z = placement.position
+    end_x, end_y, _ = placement.end
+    if z == 0:
+        return placement.dimensions[0] * placement.dimensions[1]
+    area = 0
+    for below in others:
+        bx, by, _ = below.position
+        right, back, top = below.end
+        if top == z:
+            area += max(0, min(end_x, right) - max(x, bx)) * max(0, min(end_y, back) - max(y, by))
+    return area
+
+
+def fully_supported(placement: Placement, others: Iterable[Placement]) -> bool:
+    return supported_area(placement, others) == placement.dimensions[0] * placement.dimensions[1]
+
+
+def validate_packing(instance: Instance, placements: tuple[Placement, ...], *,
+                     require_support: bool = False) -> ValidationResult:
     packages = {package.id: package for package in instance.packages}
     seen = set()
     violations = []
@@ -140,6 +161,11 @@ def validate_packing(instance: Instance, placements: tuple[Placement, ...]) -> V
 
     if total_weight > instance.container.max_payload:
         violations.append(f"Over payload limit: {total_weight} g")
+
+    if require_support and not violations:
+        for placement in placements:
+            if not fully_supported(placement, placements):
+                violations.append(f"Insufficient base support: {placement.package_id}")
 
     if violations:
         return ValidationResult(tuple(violations), None)
