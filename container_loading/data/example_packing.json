@@ -1,0 +1,12 @@
+[
+  {"package_id": "P01", "position": [0, 0, 0], "dimensions": [1200, 800, 650]},
+  {"package_id": "P02", "position": [1200, 0, 0], "dimensions": [1200, 800, 500]},
+  {"package_id": "P03", "position": [2400, 0, 0], "dimensions": [1000, 700, 650]},
+  {"package_id": "P04", "position": [3400, 0, 0], "dimensions": [1100, 900, 750]},
+  {"package_id": "P05", "position": [4500, 0, 0], "dimensions": [800, 600, 500]},
+  {"package_id": "P06", "position": [0, 900, 0], "dimensions": [1300, 900, 600]},
+  {"package_id": "P07", "position": [1300, 900, 0], "dimensions": [1000, 800, 450]},
+  {"package_id": "P08", "position": [2300, 900, 0], "dimensions": [900, 700, 550]},
+  {"package_id": "P09", "position": [3200, 900, 0], "dimensions": [700, 700, 700]},
+  {"package_id": "P10", "position": [3900, 900, 0], "dimensions": [850, 650, 400]}
+]
