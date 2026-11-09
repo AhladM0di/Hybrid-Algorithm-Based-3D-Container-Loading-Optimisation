@@ -70,14 +70,14 @@ def generate_case(family: str, count: int, seed: int):
     return Instance(Container(bounds, payload), packages), ()
 
 
-def hybrid_report(instance, seconds, seed, settings, *, require_support, support_during_search=False):
+def hybrid_report(instance, seconds, seed, settings, *, require_support, support_during_search=False, max_attempts=None):
     started = perf_counter()
     deadline = started + seconds
     best = packing_report(instance, (), started, require_support)
     rng = Random(seed)
     attempts = 0
     upper_bound = min(prod(instance.container.dimensions), sum(prod(p.dimensions) for p in instance.packages))
-    while perf_counter() < deadline:
+    while perf_counter() < deadline and (max_attempts is None or attempts < max_attempts):
         report = solve(instance, seed=seed, pool_seed=rng.getrandbits(32), anneal_seed=rng.getrandbits(32),
                        exact_slack=True, require_support=require_support,
                        support_during_search=support_during_search, **settings)

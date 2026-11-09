@@ -1,12 +1,26 @@
 from pathlib import Path
 import unittest
 
-from baseline import first_fit_decreasing
+from baseline import first_fit_decreasing, knapsack_first_fit_report, multistart_report
 from check_packing import load_instance
 from feasibility import Container, Instance, Package, Placement, validate_packing
 
 
 class BaselineTests(unittest.TestCase):
+    def test_knapsack_control_and_fixed_work(self):
+        instance = Instance(Container((13, 1, 1), 10), (
+            Package("A", (5, 1, 1), 6, False),
+            Package("B", (4, 1, 1), 5, False),
+            Package("C", (4, 1, 1), 5, False),
+        ))
+        control = knapsack_first_fit_report(instance)
+        self.assertTrue(control["valid"])
+        self.assertEqual(control["metrics"]["packed_volume"], 8)
+        first = multistart_report(instance, float("inf"), 301, weight_aware=True, max_attempts=4)
+        second = multistart_report(instance, float("inf"), 301, weight_aware=True, max_attempts=4)
+        self.assertEqual(first["completed_attempts"], 4)
+        self.assertEqual(first["placements"], second["placements"])
+
     def test_exact_fill_and_deterministic_tie_break(self):
         dimensions = (2, 2, 2)
         packages = tuple(Package(name, dimensions, 6, False) for name in ("B", "A"))

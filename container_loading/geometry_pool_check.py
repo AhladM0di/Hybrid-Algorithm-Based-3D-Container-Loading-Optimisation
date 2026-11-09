@@ -6,6 +6,7 @@ import json
 from math import prod
 from pathlib import Path
 
+from baseline import payload_order
 from feasibility import Container, Instance, Package, Placement, validate_packing
 from hybrid import build_qubo, generate_candidates
 from reference_solver import _optimize
@@ -15,11 +16,11 @@ def placements(records):
     return tuple(Placement(p["package_id"], tuple(p["position"]), tuple(p["dimensions"])) for p in records)
 
 
-def run(source: Path, output: Path, time_limit: float) -> None:
+def run(source: Path, output: Path, time_limit: float, family: str = "geometry") -> None:
     recorded = json.loads(source.read_text())
     rows = []
     for case in recorded["cases"]:
-        if case["family"] != "geometry":
+        if case["family"] != family:
             continue
         data = case["instance"]
         container = data["container"]
@@ -29,9 +30,13 @@ def run(source: Path, output: Path, time_limit: float) -> None:
                   for p in data["packages"]),
         )
         volume = prod(instance.container.dimensions)
-        witness = validate_packing(instance, placements(case["optimum_witness"]))
-        if not witness.valid or witness.metrics.packed_volume != volume:
-            raise RuntimeError("Full-container tiling failed validation")
+        full_bound = volume
+        if family == "geometry":
+            witness = validate_packing(instance, placements(case["optimum_witness"]))
+            if not witness.valid or witness.metrics.packed_volume != volume:
+                raise RuntimeError("Full-container tiling failed validation")
+        else:
+            full_bound = min(volume, sum(prod(p.dimensions) for p in payload_order(instance)))
 
         for trial in case["modes"]["brief"]["trials"]:
             hybrid = trial["hybrid"]
@@ -59,7 +64,7 @@ def run(source: Path, output: Path, time_limit: float) -> None:
             if reference["optimal"] and incumbent < hybrid_volume:
                 raise RuntimeError("Recorded packing beats the reported optimum")
             lower = max(hybrid_volume, incumbent)
-            upper = min(volume, reference["upper_bound"] or volume)
+            upper = min(full_bound, reference["upper_bound"] if reference["upper_bound"] is not None else full_bound)
             if reference["optimal"]:
                 upper = incumbent
             if lower > upper:
@@ -73,8 +78,8 @@ def run(source: Path, output: Path, time_limit: float) -> None:
                 "pool_optimum_proven": proven, "hybrid_utilization": hybrid_volume / volume,
                 "highs_incumbent_utilization": incumbent / volume,
                 "pool_lower_bound": lower / volume, "pool_upper_bound": upper / volume,
-                "coverage_gap_lower_pp": 100 * (volume - upper) / volume,
-                "coverage_gap_upper_pp": 100 * (volume - lower) / volume,
+                "coverage_gap_lower_pp": 100 * (full_bound - upper) / volume,
+                "coverage_gap_upper_pp": 100 * (full_bound - lower) / volume,
                 "search_gap_lower_pp": 100 * (lower - hybrid_volume) / volume,
                 "search_gap_upper_pp": 100 * (upper - hybrid_volume) / volume,
             })
@@ -90,9 +95,11 @@ def run(source: Path, output: Path, time_limit: float) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path, default=Path("results/heldout/heldout.json"))
-    parser.add_argument("--output", type=Path, default=Path("results/heldout/geometry_pool_check.csv"))
+    parser.add_argument("--output", type=Path)
+    parser.add_argument("--family", choices=("geometry", "mixed"), default="geometry")
     parser.add_argument("--seconds", type=float, default=12)
     args = parser.parse_args()
     if args.seconds <= 0:
         parser.error("Time limit must be positive")
-    run(args.source, args.output, args.seconds)
+    output = args.output or Path(f"results/heldout/{args.family}_pool_check.csv")
+    run(args.source, output, args.seconds, args.family)

@@ -4,10 +4,31 @@ Compare a deterministic First-Fit Decreasing baseline with a hybrid solver
 that searches a pool of possible box placements. The revised experiment
 separates candidate coverage, search quality and payload repair.
 
+## Environment
+
+From this directory, use Python 3.13 to create the project environment.
+
+```sh
+python3.13 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+```
+
+An existing environment with these dependencies also works.
+
+## Fixed-work and budget follow-up
+
+```sh
+python effort_benchmark.py --fixed-only --output reproduced/fixed_work
+python effort_benchmark.py --output reproduced/effort
+```
+
+See the [effort findings](docs/effort.md) for the attempt-count tables,
+weight-aware baseline, mixed pool check and explicit-QUBO reference.
+
 ## Held-out comparison
 
 ```sh
-conda activate cwq
 python heldout_benchmark.py --output reproduced/heldout
 python heldout_benchmark.py --support-search --output reproduced/support_search
 python payload_experiment.py --exact-slack-only --output reproduced/exact_slack
@@ -26,11 +47,9 @@ a box unsupported. This option requires `--require-support`.
 
 ## Reproduce the revised experiment
 
-Use Python 3.13 in the project environment. Run from this directory.
+Run from this directory with the environment above activated.
 
 ```sh
-conda activate cwq
-python -m pip install -r requirements.txt
 python -m unittest discover -s tests -v
 python benchmark.py --output reproduced
 ```
@@ -107,11 +126,10 @@ solver accepts a replacement sampler through its `sampler` argument.
   [geometry comparison](results/revised/packing_geometry_10.png)
 - [Recorded IBM Quantum results](results/hardware.json)
 
-The [original technical report](docs/technical_report.pdf),
+The final submission includes the [technical report](docs/technical_report.pdf),
 [student lab report](docs/container_loading_lab_report.docx),
-[demo guide](docs/demo.md) and [slides](docs/demo_slides.pptx) document the
-earlier baseline-seeded experiment. Use the revised findings for conclusions
-about candidate coverage and search quality.
+[seven-minute demo guide](docs/demo.md), and [PowerPoint slides](docs/demo_slides.pptx).
+The [v1 archive](docs/archive/v1/) holds the materials from the initial experiment.
 
 ## Optional IBM hardware experiment
 

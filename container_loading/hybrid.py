@@ -5,7 +5,7 @@ from collections.abc import Iterator, Sequence
 from dataclasses import asdict, dataclass, replace
 from fractions import Fraction
 from functools import partial
-from itertools import combinations, product
+from itertools import combinations, permutations, product
 import json
 from math import exp, gcd, log, prod
 from statistics import median
@@ -48,14 +48,18 @@ class Qubo:
         return offset, tuple(fields), tuple(couplings)
 
 
-def _layout(instance: Instance, packages: Sequence[Package], rng: Random | None, require_support: bool = False):
+def _layout(instance: Instance, packages: Sequence[Package], rng: Random | None, require_support: bool = False, priority=(2, 1, 0)):
     """Build one geometric layout using corners created within this run."""
     placed = []
     points = {(0, 0, 0)}
     bounds = instance.container.dimensions
+    if priority == (2, 1, 0):
+        position_key = lambda point: (point[2], point[1], point[0])
+    else:
+        position_key = lambda point: tuple(point[axis] for axis in priority)
     for package in packages:
         orientations = list(package.orientations)
-        positions = sorted(points, key=lambda point: (point[2], point[1], point[0]))
+        positions = sorted(points, key=position_key)
         if rng is not None:
             rng.shuffle(orientations)
             rng.shuffle(positions)
@@ -78,10 +82,11 @@ def _layout(instance: Instance, packages: Sequence[Package], rng: Random | None,
 
 
 def generate_candidates(instance: Instance, cap: int, seed: int = 0, *,
-                        require_support: bool = False) -> tuple[Placement, ...]:
+                        require_support: bool = False, varied_corners: bool = False,
+                        layout_count: int | None = None) -> tuple[Placement, ...]:
     """Mix independently constructed layouts without seeding from the baseline."""
-    if cap < 1:
-        raise ValueError("Candidate cap must be positive")
+    if cap < 1 or (layout_count is not None and layout_count < 1):
+        raise ValueError("Candidate cap and layout count must be positive")
     rng = Random(seed)
     packages = sorted(
         (package for package in instance.packages
@@ -91,13 +96,20 @@ def generate_candidates(instance: Instance, cap: int, seed: int = 0, *,
     longest_first = sorted(packages, key=lambda package: -max(package.dimensions))
     small_first = sorted(packages, key=lambda package: prod(package.dimensions))
     candidates = {}
-    orders = [(longest_first, None), (small_first, None)]
-    for _ in range(max(12, cap // max(1, len(packages)) * 3)):
+    priority = (2, 1, 0)
+    orders = [(longest_first, None, priority), (small_first, None, priority)]
+    if varied_corners:
+        orders.extend((order, None, axes) for axes in permutations(range(3)) if axes != priority
+                      for order in (longest_first, small_first))
+    limit = layout_count if layout_count is not None else (
+        len(orders) + max(12, cap // max(1, len(packages)) * 3)
+    )
+    for _ in range(max(0, limit - len(orders))):
         order = packages.copy()
         rng.shuffle(order)
-        orders.append((order, Random(rng.getrandbits(64))))
-    for order, layout_rng in orders:
-        for candidate in _layout(instance, order, layout_rng, require_support):
+        orders.append((order, Random(rng.getrandbits(64)), priority))
+    for order, layout_rng, axes in orders[:limit]:
+        for candidate in _layout(instance, order, layout_rng, require_support, axes):
             candidates[candidate] = None
             if len(candidates) == cap:
                 return tuple(candidates)

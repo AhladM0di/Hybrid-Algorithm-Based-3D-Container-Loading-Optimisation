@@ -44,16 +44,16 @@ Differences are hybrid utilization minus multi-start First-Fit
 utilization, in percentage points. Win, tie and loss counts are for
 the hybrid after averaging the three trials within each instance.
 
-| Mode and family | First-Fit mean | Hybrid mean | Difference | 95% interval | Wins / ties / losses |
-|---|---:|---:|---:|---:|---:|
-| Brief, all | 69.41% | 68.89% | −0.52 | −1.89 to +0.61 | 13 / 9 / 8 |
-| Brief, geometry | 98.72% | 95.24% | −3.48 | −6.16 to −1.14 | 1 / 3 / 6 |
-| Brief, payload | 27.71% | 28.02% | +0.31 | +0.03 to +0.63 | 4 / 6 / 0 |
-| Brief, mixed | 81.80% | 83.41% | +1.61 | +0.10 to +2.85 | 8 / 0 / 2 |
-| Full support, all | 67.96% | 63.72% | −4.24 | −6.17 to −2.39 | 6 / 1 / 23 |
-| Full support, geometry | 98.14% | 91.62% | −6.52 | −10.23 to −2.84 | 2 / 1 / 7 |
-| Full support, payload | 27.71% | 22.78% | −4.92 | −7.29 to −2.92 | 0 / 0 / 10 |
-| Full support, mixed | 78.03% | 76.75% | −1.28 | −3.87 to +1.28 | 4 / 0 / 6 |
+| Mode and family | First-Fit mean | Hybrid mean | Difference | 95% interval | Wins / ties / losses | Mean attempts First-Fit / hybrid |
+|---|---:|---:|---:|---:|---:|---:|
+| Brief, all | 69.41% | 68.89% | −0.52 | −1.89 to +0.61 | 13 / 9 / 8 | 260.7 / 3.0 |
+| Brief, geometry | 98.72% | 95.24% | −3.48 | −6.16 to −1.14 | 1 / 3 / 6 | 17.0 / 2.6 |
+| Brief, payload | 27.71% | 28.02% | +0.31 | +0.03 to +0.63 | 4 / 6 / 0 | 668.4 / 3.7 |
+| Brief, mixed | 81.80% | 83.41% | +1.61 | +0.10 to +2.85 | 8 / 0 / 2 | 96.6 / 2.8 |
+| Full support, all | 67.96% | 63.72% | −4.24 | −6.17 to −2.39 | 6 / 1 / 23 | 263.3 / 3.1 |
+| Full support, geometry | 98.14% | 91.62% | −6.52 | −10.23 to −2.84 | 2 / 1 / 7 | 36.4 / 2.8 |
+| Full support, payload | 27.71% | 22.78% | −4.92 | −7.29 to −2.92 | 0 / 0 / 10 | 661.7 / 3.7 |
+| Full support, mixed | 78.03% | 76.75% | −1.28 | −3.87 to +1.28 | 4 / 0 / 6 | 91.7 / 2.8 |
 
 Five cases packed every box on the deterministic first pass. The
 overall brief-mode interval crosses zero, so the run leaves the
@@ -138,3 +138,5 @@ python geometry_pool_check.py --seconds 12 --output reproduced/geometry_pool_che
 ```
 
 [Fixed-pool diagnostic CSV](../results/heldout/geometry_pool_check.csv)
+
+See the [effort follow-up](effort.md) for fixed-work and budget-sweep results.

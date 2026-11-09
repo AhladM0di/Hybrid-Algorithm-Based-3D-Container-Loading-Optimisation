@@ -2,6 +2,7 @@
 
 import argparse
 from dataclasses import asdict
+from fractions import Fraction
 from itertools import product
 import json
 from math import prod
@@ -72,7 +73,34 @@ def baseline_report(instance: Instance, *, require_support: bool = False) -> dic
     return packing_report(instance, placements, started, require_support)
 
 
-def multistart_report(instance: Instance, seconds: float, seed: int, *, require_support=False) -> dict:
+def payload_order(instance: Instance):
+    """Return a volume-maximizing weight-only subset, in decreasing size order."""
+    packages = sorted(instance.packages, key=lambda p: (-prod(p.dimensions), p.id))
+    states = {0: (0, ())}
+    for package in packages:
+        volume = prod(package.dimensions)
+        for used, (packed, subset) in list(states.items()):
+            weight = used + package.weight
+            if (weight <= instance.container.max_payload
+                    and packed + volume > states.get(weight, (-1, ()))[0]):
+                states[weight] = (packed + volume, (*subset, package))
+        frontier = {}
+        best = -1
+        for weight, state in sorted(states.items()):
+            if state[0] > best:
+                frontier[weight] = state
+                best = state[0]
+        states = frontier
+    return max(states.values(), key=lambda state: state[0])[1]
+
+
+def knapsack_first_fit_report(instance: Instance) -> dict:
+    started = perf_counter()
+    return packing_report(instance, first_fit(instance, payload_order(instance)), started)
+
+
+def multistart_report(instance: Instance, seconds: float, seed: int, *, require_support=False,
+                      weight_aware=False, max_attempts=None) -> dict:
     started = perf_counter()
     deadline = started + seconds
     rng = Random(seed)
@@ -80,17 +108,25 @@ def multistart_report(instance: Instance, seconds: float, seed: int, *, require_
     attempts = 0
     packages = list(instance.packages)
     upper_bound = min(prod(instance.container.dimensions), sum(prod(p.dimensions) for p in packages))
-    while perf_counter() < deadline:
+    def orientations(package):
+        return rng.sample(package.orientations, len(package.orientations))
+
+    while perf_counter() < deadline and (max_attempts is None or attempts < max_attempts):
         if attempts == 0:
             placements = first_fit_decreasing(instance, require_support=require_support)
         else:
             if attempts == 1:
                 packages.sort(key=lambda p: (-max(p.dimensions), p.id))
+            elif weight_aware and attempts == 2:
+                packages.sort(key=lambda p: (p.weight > 0, -Fraction(prod(p.dimensions), p.weight or 1)))
+            elif weight_aware and attempts == 3:
+                subset = payload_order(instance)
+                chosen = set(subset)
+                packages = [*subset, *(p for p in packages if p not in chosen)]
             else:
                 rng.shuffle(packages)
-            def orientations(package):
-                return rng.sample(package.orientations, len(package.orientations))
-            placements = first_fit(instance, packages, orientations, require_support=require_support)
+            order = orientations if not weight_aware or attempts != 3 else lambda p: p.orientations
+            placements = first_fit(instance, packages, order, require_support=require_support)
         report = packing_report(instance, placements, started, require_support)
         finished = perf_counter()
         if finished > deadline:

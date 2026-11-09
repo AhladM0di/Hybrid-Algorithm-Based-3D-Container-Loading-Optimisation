@@ -2,6 +2,7 @@ from fractions import Fraction
 from itertools import product
 import unittest
 
+from explicit_qubo import expand
 from feasibility import Container, Instance, Package, Placement, validate_packing
 from hardware_fixtures import decode_bitstring, exact_reference, fixtures
 from hybrid import (PayloadSlack, anneal, build_qubo, compound_anneal, critical_weight_price,
@@ -108,6 +109,20 @@ class HybridTests(unittest.TestCase):
                 offset + sum(field * value for field, value in zip(fields, z))
                 + sum(coupling * z[i] * z[j] for i, j, coupling in couplings),
             )
+
+    def test_explicit_qubo_matches_analytic_slack_energy(self):
+        fixture = self.fixtures["H1"]
+        qubo = fixture.qubo
+        payload = PayloadSlack((1, 2, 3), 4, 7)
+        coefficients, offset = expand(qubo, payload)
+        for selected in product((0, 1), repeat=len(payload.weights)):
+            energies = []
+            for slack in product((0, 1), repeat=payload.bits):
+                bits = (*selected, *slack)
+                energies.append(offset + sum(value * bits[i] * bits[j]
+                                             for (i, j), value in coefficients.items()))
+            weight = sum(w * bit for w, bit in zip(payload.weights, selected))
+            self.assertEqual(min(energies), qubo.energy(selected) + payload.energy(weight))
 
     def test_slack_residual_matches_binary_minimum(self):
         payload = PayloadSlack((2, 3), 4, 7)
