@@ -1,0 +1,5180 @@
+{
+  "10": {
+    "baseline": {
+      "valid": true,
+      "violations": [],
+      "metrics": {
+        "packed_count": 10,
+        "packed_volume": 4514000000,
+        "utilization": 0.13622091084531504,
+        "total_weight": 1545000
+      },
+      "runtime_seconds": 0.0011947909952141345,
+      "placements": [
+        {
+          "package_id": "P04",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "dimensions": [
+            1100,
+            900,
+            750
+          ]
+        },
+        {
+          "package_id": "P06",
+          "position": [
+            1100,
+            0,
+            0
+          ],
+          "dimensions": [
+            1300,
+            900,
+            600
+          ]
+        },
+        {
+          "package_id": "P01",
+          "position": [
+            2400,
+            0,
+            0
+          ],
+          "dimensions": [
+            1200,
+            800,
+            650
+          ]
+        },
+        {
+          "package_id": "P02",
+          "position": [
+            3600,
+            0,
+            0
+          ],
+          "dimensions": [
+            1200,
+            800,
+            500
+          ]
+        },
+        {
+          "package_id": "P03",
+          "position": [
+            4800,
+            0,
+            0
+          ],
+          "dimensions": [
+            1000,
+            700,
+            650
+          ]
+        },
+        {
+          "package_id": "P07",
+          "position": [
+            4800,
+            700,
+            0
+          ],
+          "dimensions": [
+            1000,
+            800,
+            450
+          ]
+        },
+        {
+          "package_id": "P08",
+          "position": [
+            2400,
+            800,
+            0
+          ],
+          "dimensions": [
+            900,
+            700,
+            550
+          ]
+        },
+        {
+          "package_id": "P09",
+          "position": [
+            3300,
+            800,
+            0
+          ],
+          "dimensions": [
+            700,
+            700,
+            700
+          ]
+        },
+        {
+          "package_id": "P05",
+          "position": [
+            4000,
+            800,
+            0
+          ],
+          "dimensions": [
+            800,
+            600,
+            500
+          ]
+        },
+        {
+          "package_id": "P10",
+          "position": [
+            0,
+            900,
+            0
+          ],
+          "dimensions": [
+            850,
+            650,
+            400
+          ]
+        }
+      ]
+    },
+    "hybrid_runs": [
+      {
+        "valid": true,
+        "violations": [],
+        "metrics": {
+          "packed_count": 10,
+          "packed_volume": 4514000000,
+          "utilization": 0.13622091084531504,
+          "total_weight": 1545000
+        },
+        "runtime_seconds": 0.26835908299835864,
+        "annealing_seconds": 0.2645346659992356,
+        "seed": 0,
+        "sweeps": 200,
+        "reads": 16,
+        "candidate_cap": 100,
+        "qubo_variables": 100,
+        "qubo_conflicts": 1658,
+        "conflict_penalty": 742500001,
+        "raw_energy": -4514000000,
+        "raw_valid": true,
+        "raw_violations": [],
+        "raw_placements": [
+          {
+            "package_id": "P04",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P06",
+            "position": [
+              1100,
+              0,
+              0
+            ],
+            "dimensions": [
+              1300,
+              900,
+              600
+            ]
+          },
+          {
+            "package_id": "P01",
+            "position": [
+              2400,
+              0,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              650
+            ]
+          },
+          {
+            "package_id": "P02",
+            "position": [
+              3600,
+              0,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              500
+            ]
+          },
+          {
+            "package_id": "P07",
+            "position": [
+              4800,
+              700,
+              0
+            ],
+            "dimensions": [
+              1000,
+              800,
+              450
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              2400,
+              800,
+              0
+            ],
+            "dimensions": [
+              900,
+              700,
+              550
+            ]
+          },
+          {
+            "package_id": "P09",
+            "position": [
+              3300,
+              800,
+              0
+            ],
+            "dimensions": [
+              700,
+              700,
+              700
+            ]
+          },
+          {
+            "package_id": "P05",
+            "position": [
+              4000,
+              800,
+              0
+            ],
+            "dimensions": [
+              800,
+              600,
+              500
+            ]
+          },
+          {
+            "package_id": "P10",
+            "position": [
+              0,
+              900,
+              0
+            ],
+            "dimensions": [
+              850,
+              650,
+              400
+            ]
+          },
+          {
+            "package_id": "P03",
+            "position": [
+              4900,
+              0,
+              0
+            ],
+            "dimensions": [
+              1000,
+              700,
+              650
+            ]
+          }
+        ],
+        "removed_by_repair": 0,
+        "placements": [
+          {
+            "package_id": "P04",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P06",
+            "position": [
+              1100,
+              0,
+              0
+            ],
+            "dimensions": [
+              1300,
+              900,
+              600
+            ]
+          },
+          {
+            "package_id": "P01",
+            "position": [
+              2400,
+              0,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              650
+            ]
+          },
+          {
+            "package_id": "P02",
+            "position": [
+              3600,
+              0,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              500
+            ]
+          },
+          {
+            "package_id": "P03",
+            "position": [
+              4900,
+              0,
+              0
+            ],
+            "dimensions": [
+              1000,
+              700,
+              650
+            ]
+          },
+          {
+            "package_id": "P07",
+            "position": [
+              4800,
+              700,
+              0
+            ],
+            "dimensions": [
+              1000,
+              800,
+              450
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              2400,
+              800,
+              0
+            ],
+            "dimensions": [
+              900,
+              700,
+              550
+            ]
+          },
+          {
+            "package_id": "P09",
+            "position": [
+              3300,
+              800,
+              0
+            ],
+            "dimensions": [
+              700,
+              700,
+              700
+            ]
+          },
+          {
+            "package_id": "P05",
+            "position": [
+              4000,
+              800,
+              0
+            ],
+            "dimensions": [
+              800,
+              600,
+              500
+            ]
+          },
+          {
+            "package_id": "P10",
+            "position": [
+              0,
+              900,
+              0
+            ],
+            "dimensions": [
+              850,
+              650,
+              400
+            ]
+          }
+        ]
+      },
+      {
+        "valid": true,
+        "violations": [],
+        "metrics": {
+          "packed_count": 10,
+          "packed_volume": 4514000000,
+          "utilization": 0.13622091084531504,
+          "total_weight": 1545000
+        },
+        "runtime_seconds": 0.2656529160012724,
+        "annealing_seconds": 0.26224974999786355,
+        "seed": 1,
+        "sweeps": 200,
+        "reads": 16,
+        "candidate_cap": 100,
+        "qubo_variables": 100,
+        "qubo_conflicts": 1658,
+        "conflict_penalty": 742500001,
+        "raw_energy": -4514000000,
+        "raw_valid": true,
+        "raw_violations": [],
+        "raw_placements": [
+          {
+            "package_id": "P04",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P06",
+            "position": [
+              1100,
+              0,
+              0
+            ],
+            "dimensions": [
+              1300,
+              900,
+              600
+            ]
+          },
+          {
+            "package_id": "P03",
+            "position": [
+              4800,
+              0,
+              0
+            ],
+            "dimensions": [
+              1000,
+              700,
+              650
+            ]
+          },
+          {
+            "package_id": "P07",
+            "position": [
+              4800,
+              700,
+              0
+            ],
+            "dimensions": [
+              1000,
+              800,
+              450
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              2400,
+              800,
+              0
+            ],
+            "dimensions": [
+              900,
+              700,
+              550
+            ]
+          },
+          {
+            "package_id": "P09",
+            "position": [
+              3300,
+              800,
+              0
+            ],
+            "dimensions": [
+              700,
+              700,
+              700
+            ]
+          },
+          {
+            "package_id": "P05",
+            "position": [
+              4000,
+              800,
+              0
+            ],
+            "dimensions": [
+              800,
+              600,
+              500
+            ]
+          },
+          {
+            "package_id": "P10",
+            "position": [
+              0,
+              900,
+              0
+            ],
+            "dimensions": [
+              850,
+              650,
+              400
+            ]
+          },
+          {
+            "package_id": "P02",
+            "position": [
+              2400,
+              0,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              500
+            ]
+          },
+          {
+            "package_id": "P01",
+            "position": [
+              3600,
+              0,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              650
+            ]
+          }
+        ],
+        "removed_by_repair": 0,
+        "placements": [
+          {
+            "package_id": "P04",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P06",
+            "position": [
+              1100,
+              0,
+              0
+            ],
+            "dimensions": [
+              1300,
+              900,
+              600
+            ]
+          },
+          {
+            "package_id": "P01",
+            "position": [
+              3600,
+              0,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              650
+            ]
+          },
+          {
+            "package_id": "P02",
+            "position": [
+              2400,
+              0,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              500
+            ]
+          },
+          {
+            "package_id": "P03",
+            "position": [
+              4800,
+              0,
+              0
+            ],
+            "dimensions": [
+              1000,
+              700,
+              650
+            ]
+          },
+          {
+            "package_id": "P07",
+            "position": [
+              4800,
+              700,
+              0
+            ],
+            "dimensions": [
+              1000,
+              800,
+              450
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              2400,
+              800,
+              0
+            ],
+            "dimensions": [
+              900,
+              700,
+              550
+            ]
+          },
+          {
+            "package_id": "P09",
+            "position": [
+              3300,
+              800,
+              0
+            ],
+            "dimensions": [
+              700,
+              700,
+              700
+            ]
+          },
+          {
+            "package_id": "P05",
+            "position": [
+              4000,
+              800,
+              0
+            ],
+            "dimensions": [
+              800,
+              600,
+              500
+            ]
+          },
+          {
+            "package_id": "P10",
+            "position": [
+              0,
+              900,
+              0
+            ],
+            "dimensions": [
+              850,
+              650,
+              400
+            ]
+          }
+        ]
+      },
+      {
+        "valid": true,
+        "violations": [],
+        "metrics": {
+          "packed_count": 10,
+          "packed_volume": 4514000000,
+          "utilization": 0.13622091084531504,
+          "total_weight": 1545000
+        },
+        "runtime_seconds": 0.2674561659950996,
+        "annealing_seconds": 0.2641564160003327,
+        "seed": 2,
+        "sweeps": 200,
+        "reads": 16,
+        "candidate_cap": 100,
+        "qubo_variables": 100,
+        "qubo_conflicts": 1658,
+        "conflict_penalty": 742500001,
+        "raw_energy": -4514000000,
+        "raw_valid": true,
+        "raw_violations": [],
+        "raw_placements": [
+          {
+            "package_id": "P04",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P06",
+            "position": [
+              1100,
+              0,
+              0
+            ],
+            "dimensions": [
+              1300,
+              900,
+              600
+            ]
+          },
+          {
+            "package_id": "P01",
+            "position": [
+              2400,
+              0,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              650
+            ]
+          },
+          {
+            "package_id": "P02",
+            "position": [
+              3600,
+              0,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              500
+            ]
+          },
+          {
+            "package_id": "P07",
+            "position": [
+              4800,
+              700,
+              0
+            ],
+            "dimensions": [
+              1000,
+              800,
+              450
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              2400,
+              800,
+              0
+            ],
+            "dimensions": [
+              900,
+              700,
+              550
+            ]
+          },
+          {
+            "package_id": "P09",
+            "position": [
+              3300,
+              800,
+              0
+            ],
+            "dimensions": [
+              700,
+              700,
+              700
+            ]
+          },
+          {
+            "package_id": "P05",
+            "position": [
+              4000,
+              800,
+              0
+            ],
+            "dimensions": [
+              800,
+              600,
+              500
+            ]
+          },
+          {
+            "package_id": "P10",
+            "position": [
+              0,
+              900,
+              0
+            ],
+            "dimensions": [
+              850,
+              650,
+              400
+            ]
+          },
+          {
+            "package_id": "P03",
+            "position": [
+              4900,
+              0,
+              0
+            ],
+            "dimensions": [
+              1000,
+              700,
+              650
+            ]
+          }
+        ],
+        "removed_by_repair": 0,
+        "placements": [
+          {
+            "package_id": "P04",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P06",
+            "position": [
+              1100,
+              0,
+              0
+            ],
+            "dimensions": [
+              1300,
+              900,
+              600
+            ]
+          },
+          {
+            "package_id": "P01",
+            "position": [
+              2400,
+              0,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              650
+            ]
+          },
+          {
+            "package_id": "P02",
+            "position": [
+              3600,
+              0,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              500
+            ]
+          },
+          {
+            "package_id": "P03",
+            "position": [
+              4900,
+              0,
+              0
+            ],
+            "dimensions": [
+              1000,
+              700,
+              650
+            ]
+          },
+          {
+            "package_id": "P07",
+            "position": [
+              4800,
+              700,
+              0
+            ],
+            "dimensions": [
+              1000,
+              800,
+              450
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              2400,
+              800,
+              0
+            ],
+            "dimensions": [
+              900,
+              700,
+              550
+            ]
+          },
+          {
+            "package_id": "P09",
+            "position": [
+              3300,
+              800,
+              0
+            ],
+            "dimensions": [
+              700,
+              700,
+              700
+            ]
+          },
+          {
+            "package_id": "P05",
+            "position": [
+              4000,
+              800,
+              0
+            ],
+            "dimensions": [
+              800,
+              600,
+              500
+            ]
+          },
+          {
+            "package_id": "P10",
+            "position": [
+              0,
+              900,
+              0
+            ],
+            "dimensions": [
+              850,
+              650,
+              400
+            ]
+          }
+        ]
+      },
+      {
+        "valid": true,
+        "violations": [],
+        "metrics": {
+          "packed_count": 10,
+          "packed_volume": 4514000000,
+          "utilization": 0.13622091084531504,
+          "total_weight": 1545000
+        },
+        "runtime_seconds": 0.2673243339959299,
+        "annealing_seconds": 0.26394470800005365,
+        "seed": 3,
+        "sweeps": 200,
+        "reads": 16,
+        "candidate_cap": 100,
+        "qubo_variables": 100,
+        "qubo_conflicts": 1658,
+        "conflict_penalty": 742500001,
+        "raw_energy": -4514000000,
+        "raw_valid": true,
+        "raw_violations": [],
+        "raw_placements": [
+          {
+            "package_id": "P04",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P06",
+            "position": [
+              1100,
+              0,
+              0
+            ],
+            "dimensions": [
+              1300,
+              900,
+              600
+            ]
+          },
+          {
+            "package_id": "P01",
+            "position": [
+              2400,
+              0,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              650
+            ]
+          },
+          {
+            "package_id": "P02",
+            "position": [
+              3600,
+              0,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              500
+            ]
+          },
+          {
+            "package_id": "P03",
+            "position": [
+              4800,
+              0,
+              0
+            ],
+            "dimensions": [
+              1000,
+              700,
+              650
+            ]
+          },
+          {
+            "package_id": "P07",
+            "position": [
+              4800,
+              700,
+              0
+            ],
+            "dimensions": [
+              1000,
+              800,
+              450
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              2400,
+              800,
+              0
+            ],
+            "dimensions": [
+              900,
+              700,
+              550
+            ]
+          },
+          {
+            "package_id": "P09",
+            "position": [
+              3300,
+              800,
+              0
+            ],
+            "dimensions": [
+              700,
+              700,
+              700
+            ]
+          },
+          {
+            "package_id": "P05",
+            "position": [
+              4000,
+              800,
+              0
+            ],
+            "dimensions": [
+              800,
+              600,
+              500
+            ]
+          },
+          {
+            "package_id": "P10",
+            "position": [
+              0,
+              900,
+              0
+            ],
+            "dimensions": [
+              850,
+              650,
+              400
+            ]
+          }
+        ],
+        "removed_by_repair": 0,
+        "placements": [
+          {
+            "package_id": "P04",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P06",
+            "position": [
+              1100,
+              0,
+              0
+            ],
+            "dimensions": [
+              1300,
+              900,
+              600
+            ]
+          },
+          {
+            "package_id": "P01",
+            "position": [
+              2400,
+              0,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              650
+            ]
+          },
+          {
+            "package_id": "P02",
+            "position": [
+              3600,
+              0,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              500
+            ]
+          },
+          {
+            "package_id": "P03",
+            "position": [
+              4800,
+              0,
+              0
+            ],
+            "dimensions": [
+              1000,
+              700,
+              650
+            ]
+          },
+          {
+            "package_id": "P07",
+            "position": [
+              4800,
+              700,
+              0
+            ],
+            "dimensions": [
+              1000,
+              800,
+              450
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              2400,
+              800,
+              0
+            ],
+            "dimensions": [
+              900,
+              700,
+              550
+            ]
+          },
+          {
+            "package_id": "P09",
+            "position": [
+              3300,
+              800,
+              0
+            ],
+            "dimensions": [
+              700,
+              700,
+              700
+            ]
+          },
+          {
+            "package_id": "P05",
+            "position": [
+              4000,
+              800,
+              0
+            ],
+            "dimensions": [
+              800,
+              600,
+              500
+            ]
+          },
+          {
+            "package_id": "P10",
+            "position": [
+              0,
+              900,
+              0
+            ],
+            "dimensions": [
+              850,
+              650,
+              400
+            ]
+          }
+        ]
+      },
+      {
+        "valid": true,
+        "violations": [],
+        "metrics": {
+          "packed_count": 10,
+          "packed_volume": 4514000000,
+          "utilization": 0.13622091084531504,
+          "total_weight": 1545000
+        },
+        "runtime_seconds": 0.2656902500020806,
+        "annealing_seconds": 0.2623609580041375,
+        "seed": 4,
+        "sweeps": 200,
+        "reads": 16,
+        "candidate_cap": 100,
+        "qubo_variables": 100,
+        "qubo_conflicts": 1658,
+        "conflict_penalty": 742500001,
+        "raw_energy": -4514000000,
+        "raw_valid": true,
+        "raw_violations": [],
+        "raw_placements": [
+          {
+            "package_id": "P04",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P06",
+            "position": [
+              1100,
+              0,
+              0
+            ],
+            "dimensions": [
+              1300,
+              900,
+              600
+            ]
+          },
+          {
+            "package_id": "P01",
+            "position": [
+              2400,
+              0,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              650
+            ]
+          },
+          {
+            "package_id": "P02",
+            "position": [
+              3600,
+              0,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              500
+            ]
+          },
+          {
+            "package_id": "P03",
+            "position": [
+              4800,
+              0,
+              0
+            ],
+            "dimensions": [
+              1000,
+              700,
+              650
+            ]
+          },
+          {
+            "package_id": "P07",
+            "position": [
+              4800,
+              700,
+              0
+            ],
+            "dimensions": [
+              1000,
+              800,
+              450
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              2400,
+              800,
+              0
+            ],
+            "dimensions": [
+              900,
+              700,
+              550
+            ]
+          },
+          {
+            "package_id": "P09",
+            "position": [
+              3300,
+              800,
+              0
+            ],
+            "dimensions": [
+              700,
+              700,
+              700
+            ]
+          },
+          {
+            "package_id": "P05",
+            "position": [
+              4000,
+              800,
+              0
+            ],
+            "dimensions": [
+              800,
+              600,
+              500
+            ]
+          },
+          {
+            "package_id": "P10",
+            "position": [
+              0,
+              900,
+              0
+            ],
+            "dimensions": [
+              850,
+              650,
+              400
+            ]
+          }
+        ],
+        "removed_by_repair": 0,
+        "placements": [
+          {
+            "package_id": "P04",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P06",
+            "position": [
+              1100,
+              0,
+              0
+            ],
+            "dimensions": [
+              1300,
+              900,
+              600
+            ]
+          },
+          {
+            "package_id": "P01",
+            "position": [
+              2400,
+              0,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              650
+            ]
+          },
+          {
+            "package_id": "P02",
+            "position": [
+              3600,
+              0,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              500
+            ]
+          },
+          {
+            "package_id": "P03",
+            "position": [
+              4800,
+              0,
+              0
+            ],
+            "dimensions": [
+              1000,
+              700,
+              650
+            ]
+          },
+          {
+            "package_id": "P07",
+            "position": [
+              4800,
+              700,
+              0
+            ],
+            "dimensions": [
+              1000,
+              800,
+              450
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              2400,
+              800,
+              0
+            ],
+            "dimensions": [
+              900,
+              700,
+              550
+            ]
+          },
+          {
+            "package_id": "P09",
+            "position": [
+              3300,
+              800,
+              0
+            ],
+            "dimensions": [
+              700,
+              700,
+              700
+            ]
+          },
+          {
+            "package_id": "P05",
+            "position": [
+              4000,
+              800,
+              0
+            ],
+            "dimensions": [
+              800,
+              600,
+              500
+            ]
+          },
+          {
+            "package_id": "P10",
+            "position": [
+              0,
+              900,
+              0
+            ],
+            "dimensions": [
+              850,
+              650,
+              400
+            ]
+          }
+        ]
+      }
+    ],
+    "best_seed": 0
+  },
+  "15": {
+    "baseline": {
+      "valid": true,
+      "violations": [],
+      "metrics": {
+        "packed_count": 15,
+        "packed_volume": 18939500000,
+        "utilization": 0.5715454011862747,
+        "total_weight": 3990000
+      },
+      "runtime_seconds": 0.008953458003816195,
+      "placements": [
+        {
+          "package_id": "P11",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "dimensions": [
+            2100,
+            1500,
+            1300
+          ]
+        },
+        {
+          "package_id": "P13",
+          "position": [
+            2100,
+            0,
+            0
+          ],
+          "dimensions": [
+            1900,
+            1200,
+            1450
+          ]
+        },
+        {
+          "package_id": "P12",
+          "position": [
+            2100,
+            1200,
+            0
+          ],
+          "dimensions": [
+            2800,
+            1100,
+            950
+          ]
+        },
+        {
+          "package_id": "P15",
+          "position": [
+            2100,
+            1200,
+            950
+          ],
+          "dimensions": [
+            2100,
+            950,
+            1100
+          ]
+        },
+        {
+          "package_id": "P14",
+          "position": [
+            4000,
+            0,
+            0
+          ],
+          "dimensions": [
+            1700,
+            800,
+            1400
+          ]
+        },
+        {
+          "package_id": "P04",
+          "position": [
+            4200,
+            800,
+            950
+          ],
+          "dimensions": [
+            1100,
+            900,
+            750
+          ]
+        },
+        {
+          "package_id": "P06",
+          "position": [
+            0,
+            0,
+            1300
+          ],
+          "dimensions": [
+            1300,
+            900,
+            600
+          ]
+        },
+        {
+          "package_id": "P01",
+          "position": [
+            4900,
+            800,
+            0
+          ],
+          "dimensions": [
+            800,
+            1200,
+            650
+          ]
+        },
+        {
+          "package_id": "P02",
+          "position": [
+            0,
+            1500,
+            0
+          ],
+          "dimensions": [
+            1200,
+            800,
+            500
+          ]
+        },
+        {
+          "package_id": "P03",
+          "position": [
+            1200,
+            1500,
+            0
+          ],
+          "dimensions": [
+            700,
+            650,
+            1000
+          ]
+        },
+        {
+          "package_id": "P07",
+          "position": [
+            0,
+            1500,
+            500
+          ],
+          "dimensions": [
+            1000,
+            800,
+            450
+          ]
+        },
+        {
+          "package_id": "P08",
+          "position": [
+            5300,
+            800,
+            650
+          ],
+          "dimensions": [
+            550,
+            900,
+            700
+          ]
+        },
+        {
+          "package_id": "P09",
+          "position": [
+            0,
+            1500,
+            950
+          ],
+          "dimensions": [
+            700,
+            700,
+            700
+          ]
+        },
+        {
+          "package_id": "P05",
+          "position": [
+            4900,
+            1700,
+            650
+          ],
+          "dimensions": [
+            800,
+            600,
+            500
+          ]
+        },
+        {
+          "package_id": "P10",
+          "position": [
+            4000,
+            800,
+            0
+          ],
+          "dimensions": [
+            850,
+            400,
+            650
+          ]
+        }
+      ]
+    },
+    "hybrid_runs": [
+      {
+        "valid": true,
+        "violations": [],
+        "metrics": {
+          "packed_count": 15,
+          "packed_volume": 18939500000,
+          "utilization": 0.5715454011862747,
+          "total_weight": 3990000
+        },
+        "runtime_seconds": 0.419685250002658,
+        "annealing_seconds": 0.40784829200129025,
+        "seed": 0,
+        "sweeps": 200,
+        "reads": 16,
+        "candidate_cap": 100,
+        "qubo_variables": 100,
+        "qubo_conflicts": 3116,
+        "conflict_penalty": 4095000001,
+        "raw_energy": -18939500000,
+        "raw_valid": true,
+        "raw_violations": [],
+        "raw_placements": [
+          {
+            "package_id": "P11",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              2100,
+              1500,
+              1300
+            ]
+          },
+          {
+            "package_id": "P13",
+            "position": [
+              2100,
+              0,
+              0
+            ],
+            "dimensions": [
+              1900,
+              1200,
+              1450
+            ]
+          },
+          {
+            "package_id": "P12",
+            "position": [
+              2100,
+              1200,
+              0
+            ],
+            "dimensions": [
+              2800,
+              1100,
+              950
+            ]
+          },
+          {
+            "package_id": "P15",
+            "position": [
+              2100,
+              1200,
+              950
+            ],
+            "dimensions": [
+              2100,
+              950,
+              1100
+            ]
+          },
+          {
+            "package_id": "P14",
+            "position": [
+              4000,
+              0,
+              0
+            ],
+            "dimensions": [
+              1700,
+              800,
+              1400
+            ]
+          },
+          {
+            "package_id": "P04",
+            "position": [
+              4200,
+              800,
+              950
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P06",
+            "position": [
+              0,
+              0,
+              1300
+            ],
+            "dimensions": [
+              1300,
+              900,
+              600
+            ]
+          },
+          {
+            "package_id": "P01",
+            "position": [
+              4900,
+              800,
+              0
+            ],
+            "dimensions": [
+              800,
+              1200,
+              650
+            ]
+          },
+          {
+            "package_id": "P02",
+            "position": [
+              0,
+              1500,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              500
+            ]
+          },
+          {
+            "package_id": "P03",
+            "position": [
+              1200,
+              1500,
+              0
+            ],
+            "dimensions": [
+              700,
+              650,
+              1000
+            ]
+          },
+          {
+            "package_id": "P07",
+            "position": [
+              0,
+              1500,
+              500
+            ],
+            "dimensions": [
+              1000,
+              800,
+              450
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              5300,
+              800,
+              650
+            ],
+            "dimensions": [
+              550,
+              900,
+              700
+            ]
+          },
+          {
+            "package_id": "P09",
+            "position": [
+              0,
+              1500,
+              950
+            ],
+            "dimensions": [
+              700,
+              700,
+              700
+            ]
+          },
+          {
+            "package_id": "P05",
+            "position": [
+              4900,
+              1700,
+              650
+            ],
+            "dimensions": [
+              800,
+              600,
+              500
+            ]
+          },
+          {
+            "package_id": "P10",
+            "position": [
+              4000,
+              800,
+              0
+            ],
+            "dimensions": [
+              850,
+              400,
+              650
+            ]
+          }
+        ],
+        "removed_by_repair": 0,
+        "placements": [
+          {
+            "package_id": "P11",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              2100,
+              1500,
+              1300
+            ]
+          },
+          {
+            "package_id": "P13",
+            "position": [
+              2100,
+              0,
+              0
+            ],
+            "dimensions": [
+              1900,
+              1200,
+              1450
+            ]
+          },
+          {
+            "package_id": "P12",
+            "position": [
+              2100,
+              1200,
+              0
+            ],
+            "dimensions": [
+              2800,
+              1100,
+              950
+            ]
+          },
+          {
+            "package_id": "P15",
+            "position": [
+              2100,
+              1200,
+              950
+            ],
+            "dimensions": [
+              2100,
+              950,
+              1100
+            ]
+          },
+          {
+            "package_id": "P14",
+            "position": [
+              4000,
+              0,
+              0
+            ],
+            "dimensions": [
+              1700,
+              800,
+              1400
+            ]
+          },
+          {
+            "package_id": "P04",
+            "position": [
+              4200,
+              800,
+              950
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P06",
+            "position": [
+              0,
+              0,
+              1300
+            ],
+            "dimensions": [
+              1300,
+              900,
+              600
+            ]
+          },
+          {
+            "package_id": "P01",
+            "position": [
+              4900,
+              800,
+              0
+            ],
+            "dimensions": [
+              800,
+              1200,
+              650
+            ]
+          },
+          {
+            "package_id": "P02",
+            "position": [
+              0,
+              1500,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              500
+            ]
+          },
+          {
+            "package_id": "P03",
+            "position": [
+              1200,
+              1500,
+              0
+            ],
+            "dimensions": [
+              700,
+              650,
+              1000
+            ]
+          },
+          {
+            "package_id": "P07",
+            "position": [
+              0,
+              1500,
+              500
+            ],
+            "dimensions": [
+              1000,
+              800,
+              450
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              5300,
+              800,
+              650
+            ],
+            "dimensions": [
+              550,
+              900,
+              700
+            ]
+          },
+          {
+            "package_id": "P09",
+            "position": [
+              0,
+              1500,
+              950
+            ],
+            "dimensions": [
+              700,
+              700,
+              700
+            ]
+          },
+          {
+            "package_id": "P05",
+            "position": [
+              4900,
+              1700,
+              650
+            ],
+            "dimensions": [
+              800,
+              600,
+              500
+            ]
+          },
+          {
+            "package_id": "P10",
+            "position": [
+              4000,
+              800,
+              0
+            ],
+            "dimensions": [
+              850,
+              400,
+              650
+            ]
+          }
+        ]
+      },
+      {
+        "valid": true,
+        "violations": [],
+        "metrics": {
+          "packed_count": 15,
+          "packed_volume": 18939500000,
+          "utilization": 0.5715454011862747,
+          "total_weight": 3990000
+        },
+        "runtime_seconds": 0.43025654199300334,
+        "annealing_seconds": 0.41860716699738987,
+        "seed": 1,
+        "sweeps": 200,
+        "reads": 16,
+        "candidate_cap": 100,
+        "qubo_variables": 100,
+        "qubo_conflicts": 3116,
+        "conflict_penalty": 4095000001,
+        "raw_energy": -18939500000,
+        "raw_valid": true,
+        "raw_violations": [],
+        "raw_placements": [
+          {
+            "package_id": "P11",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              2100,
+              1500,
+              1300
+            ]
+          },
+          {
+            "package_id": "P13",
+            "position": [
+              2100,
+              0,
+              0
+            ],
+            "dimensions": [
+              1900,
+              1200,
+              1450
+            ]
+          },
+          {
+            "package_id": "P12",
+            "position": [
+              2100,
+              1200,
+              0
+            ],
+            "dimensions": [
+              2800,
+              1100,
+              950
+            ]
+          },
+          {
+            "package_id": "P15",
+            "position": [
+              2100,
+              1200,
+              950
+            ],
+            "dimensions": [
+              2100,
+              950,
+              1100
+            ]
+          },
+          {
+            "package_id": "P14",
+            "position": [
+              4000,
+              0,
+              0
+            ],
+            "dimensions": [
+              1700,
+              800,
+              1400
+            ]
+          },
+          {
+            "package_id": "P04",
+            "position": [
+              4200,
+              800,
+              950
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P06",
+            "position": [
+              0,
+              0,
+              1300
+            ],
+            "dimensions": [
+              1300,
+              900,
+              600
+            ]
+          },
+          {
+            "package_id": "P01",
+            "position": [
+              4900,
+              800,
+              0
+            ],
+            "dimensions": [
+              800,
+              1200,
+              650
+            ]
+          },
+          {
+            "package_id": "P02",
+            "position": [
+              0,
+              1500,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              500
+            ]
+          },
+          {
+            "package_id": "P03",
+            "position": [
+              1200,
+              1500,
+              0
+            ],
+            "dimensions": [
+              700,
+              650,
+              1000
+            ]
+          },
+          {
+            "package_id": "P07",
+            "position": [
+              0,
+              1500,
+              500
+            ],
+            "dimensions": [
+              1000,
+              800,
+              450
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              5300,
+              800,
+              650
+            ],
+            "dimensions": [
+              550,
+              900,
+              700
+            ]
+          },
+          {
+            "package_id": "P09",
+            "position": [
+              0,
+              1500,
+              950
+            ],
+            "dimensions": [
+              700,
+              700,
+              700
+            ]
+          },
+          {
+            "package_id": "P05",
+            "position": [
+              4900,
+              1700,
+              650
+            ],
+            "dimensions": [
+              800,
+              600,
+              500
+            ]
+          },
+          {
+            "package_id": "P10",
+            "position": [
+              4000,
+              800,
+              0
+            ],
+            "dimensions": [
+              850,
+              400,
+              650
+            ]
+          }
+        ],
+        "removed_by_repair": 0,
+        "placements": [
+          {
+            "package_id": "P11",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              2100,
+              1500,
+              1300
+            ]
+          },
+          {
+            "package_id": "P13",
+            "position": [
+              2100,
+              0,
+              0
+            ],
+            "dimensions": [
+              1900,
+              1200,
+              1450
+            ]
+          },
+          {
+            "package_id": "P12",
+            "position": [
+              2100,
+              1200,
+              0
+            ],
+            "dimensions": [
+              2800,
+              1100,
+              950
+            ]
+          },
+          {
+            "package_id": "P15",
+            "position": [
+              2100,
+              1200,
+              950
+            ],
+            "dimensions": [
+              2100,
+              950,
+              1100
+            ]
+          },
+          {
+            "package_id": "P14",
+            "position": [
+              4000,
+              0,
+              0
+            ],
+            "dimensions": [
+              1700,
+              800,
+              1400
+            ]
+          },
+          {
+            "package_id": "P04",
+            "position": [
+              4200,
+              800,
+              950
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P06",
+            "position": [
+              0,
+              0,
+              1300
+            ],
+            "dimensions": [
+              1300,
+              900,
+              600
+            ]
+          },
+          {
+            "package_id": "P01",
+            "position": [
+              4900,
+              800,
+              0
+            ],
+            "dimensions": [
+              800,
+              1200,
+              650
+            ]
+          },
+          {
+            "package_id": "P02",
+            "position": [
+              0,
+              1500,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              500
+            ]
+          },
+          {
+            "package_id": "P03",
+            "position": [
+              1200,
+              1500,
+              0
+            ],
+            "dimensions": [
+              700,
+              650,
+              1000
+            ]
+          },
+          {
+            "package_id": "P07",
+            "position": [
+              0,
+              1500,
+              500
+            ],
+            "dimensions": [
+              1000,
+              800,
+              450
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              5300,
+              800,
+              650
+            ],
+            "dimensions": [
+              550,
+              900,
+              700
+            ]
+          },
+          {
+            "package_id": "P09",
+            "position": [
+              0,
+              1500,
+              950
+            ],
+            "dimensions": [
+              700,
+              700,
+              700
+            ]
+          },
+          {
+            "package_id": "P05",
+            "position": [
+              4900,
+              1700,
+              650
+            ],
+            "dimensions": [
+              800,
+              600,
+              500
+            ]
+          },
+          {
+            "package_id": "P10",
+            "position": [
+              4000,
+              800,
+              0
+            ],
+            "dimensions": [
+              850,
+              400,
+              650
+            ]
+          }
+        ]
+      },
+      {
+        "valid": true,
+        "violations": [],
+        "metrics": {
+          "packed_count": 15,
+          "packed_volume": 18939500000,
+          "utilization": 0.5715454011862747,
+          "total_weight": 3990000
+        },
+        "runtime_seconds": 0.4273245000076713,
+        "annealing_seconds": 0.4156609159981599,
+        "seed": 2,
+        "sweeps": 200,
+        "reads": 16,
+        "candidate_cap": 100,
+        "qubo_variables": 100,
+        "qubo_conflicts": 3116,
+        "conflict_penalty": 4095000001,
+        "raw_energy": -18939500000,
+        "raw_valid": true,
+        "raw_violations": [],
+        "raw_placements": [
+          {
+            "package_id": "P11",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              2100,
+              1500,
+              1300
+            ]
+          },
+          {
+            "package_id": "P13",
+            "position": [
+              2100,
+              0,
+              0
+            ],
+            "dimensions": [
+              1900,
+              1200,
+              1450
+            ]
+          },
+          {
+            "package_id": "P12",
+            "position": [
+              2100,
+              1200,
+              0
+            ],
+            "dimensions": [
+              2800,
+              1100,
+              950
+            ]
+          },
+          {
+            "package_id": "P15",
+            "position": [
+              2100,
+              1200,
+              950
+            ],
+            "dimensions": [
+              2100,
+              950,
+              1100
+            ]
+          },
+          {
+            "package_id": "P14",
+            "position": [
+              4000,
+              0,
+              0
+            ],
+            "dimensions": [
+              1700,
+              800,
+              1400
+            ]
+          },
+          {
+            "package_id": "P04",
+            "position": [
+              4200,
+              800,
+              950
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P06",
+            "position": [
+              0,
+              0,
+              1300
+            ],
+            "dimensions": [
+              1300,
+              900,
+              600
+            ]
+          },
+          {
+            "package_id": "P01",
+            "position": [
+              4900,
+              800,
+              0
+            ],
+            "dimensions": [
+              800,
+              1200,
+              650
+            ]
+          },
+          {
+            "package_id": "P02",
+            "position": [
+              0,
+              1500,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              500
+            ]
+          },
+          {
+            "package_id": "P03",
+            "position": [
+              1200,
+              1500,
+              0
+            ],
+            "dimensions": [
+              700,
+              650,
+              1000
+            ]
+          },
+          {
+            "package_id": "P07",
+            "position": [
+              0,
+              1500,
+              500
+            ],
+            "dimensions": [
+              1000,
+              800,
+              450
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              5300,
+              800,
+              650
+            ],
+            "dimensions": [
+              550,
+              900,
+              700
+            ]
+          },
+          {
+            "package_id": "P09",
+            "position": [
+              0,
+              1500,
+              950
+            ],
+            "dimensions": [
+              700,
+              700,
+              700
+            ]
+          },
+          {
+            "package_id": "P05",
+            "position": [
+              4900,
+              1700,
+              650
+            ],
+            "dimensions": [
+              800,
+              600,
+              500
+            ]
+          },
+          {
+            "package_id": "P10",
+            "position": [
+              4000,
+              800,
+              0
+            ],
+            "dimensions": [
+              850,
+              400,
+              650
+            ]
+          }
+        ],
+        "removed_by_repair": 0,
+        "placements": [
+          {
+            "package_id": "P11",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              2100,
+              1500,
+              1300
+            ]
+          },
+          {
+            "package_id": "P13",
+            "position": [
+              2100,
+              0,
+              0
+            ],
+            "dimensions": [
+              1900,
+              1200,
+              1450
+            ]
+          },
+          {
+            "package_id": "P12",
+            "position": [
+              2100,
+              1200,
+              0
+            ],
+            "dimensions": [
+              2800,
+              1100,
+              950
+            ]
+          },
+          {
+            "package_id": "P15",
+            "position": [
+              2100,
+              1200,
+              950
+            ],
+            "dimensions": [
+              2100,
+              950,
+              1100
+            ]
+          },
+          {
+            "package_id": "P14",
+            "position": [
+              4000,
+              0,
+              0
+            ],
+            "dimensions": [
+              1700,
+              800,
+              1400
+            ]
+          },
+          {
+            "package_id": "P04",
+            "position": [
+              4200,
+              800,
+              950
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P06",
+            "position": [
+              0,
+              0,
+              1300
+            ],
+            "dimensions": [
+              1300,
+              900,
+              600
+            ]
+          },
+          {
+            "package_id": "P01",
+            "position": [
+              4900,
+              800,
+              0
+            ],
+            "dimensions": [
+              800,
+              1200,
+              650
+            ]
+          },
+          {
+            "package_id": "P02",
+            "position": [
+              0,
+              1500,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              500
+            ]
+          },
+          {
+            "package_id": "P03",
+            "position": [
+              1200,
+              1500,
+              0
+            ],
+            "dimensions": [
+              700,
+              650,
+              1000
+            ]
+          },
+          {
+            "package_id": "P07",
+            "position": [
+              0,
+              1500,
+              500
+            ],
+            "dimensions": [
+              1000,
+              800,
+              450
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              5300,
+              800,
+              650
+            ],
+            "dimensions": [
+              550,
+              900,
+              700
+            ]
+          },
+          {
+            "package_id": "P09",
+            "position": [
+              0,
+              1500,
+              950
+            ],
+            "dimensions": [
+              700,
+              700,
+              700
+            ]
+          },
+          {
+            "package_id": "P05",
+            "position": [
+              4900,
+              1700,
+              650
+            ],
+            "dimensions": [
+              800,
+              600,
+              500
+            ]
+          },
+          {
+            "package_id": "P10",
+            "position": [
+              4000,
+              800,
+              0
+            ],
+            "dimensions": [
+              850,
+              400,
+              650
+            ]
+          }
+        ]
+      },
+      {
+        "valid": true,
+        "violations": [],
+        "metrics": {
+          "packed_count": 15,
+          "packed_volume": 18939500000,
+          "utilization": 0.5715454011862747,
+          "total_weight": 3990000
+        },
+        "runtime_seconds": 0.42604816699167714,
+        "annealing_seconds": 0.4146020000043791,
+        "seed": 3,
+        "sweeps": 200,
+        "reads": 16,
+        "candidate_cap": 100,
+        "qubo_variables": 100,
+        "qubo_conflicts": 3116,
+        "conflict_penalty": 4095000001,
+        "raw_energy": -18939500000,
+        "raw_valid": true,
+        "raw_violations": [],
+        "raw_placements": [
+          {
+            "package_id": "P11",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              2100,
+              1500,
+              1300
+            ]
+          },
+          {
+            "package_id": "P13",
+            "position": [
+              2100,
+              0,
+              0
+            ],
+            "dimensions": [
+              1900,
+              1200,
+              1450
+            ]
+          },
+          {
+            "package_id": "P12",
+            "position": [
+              2100,
+              1200,
+              0
+            ],
+            "dimensions": [
+              2800,
+              1100,
+              950
+            ]
+          },
+          {
+            "package_id": "P15",
+            "position": [
+              2100,
+              1200,
+              950
+            ],
+            "dimensions": [
+              2100,
+              950,
+              1100
+            ]
+          },
+          {
+            "package_id": "P14",
+            "position": [
+              4000,
+              0,
+              0
+            ],
+            "dimensions": [
+              1700,
+              800,
+              1400
+            ]
+          },
+          {
+            "package_id": "P04",
+            "position": [
+              4200,
+              800,
+              950
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P06",
+            "position": [
+              0,
+              0,
+              1300
+            ],
+            "dimensions": [
+              1300,
+              900,
+              600
+            ]
+          },
+          {
+            "package_id": "P01",
+            "position": [
+              4900,
+              800,
+              0
+            ],
+            "dimensions": [
+              800,
+              1200,
+              650
+            ]
+          },
+          {
+            "package_id": "P02",
+            "position": [
+              0,
+              1500,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              500
+            ]
+          },
+          {
+            "package_id": "P03",
+            "position": [
+              1200,
+              1500,
+              0
+            ],
+            "dimensions": [
+              700,
+              650,
+              1000
+            ]
+          },
+          {
+            "package_id": "P07",
+            "position": [
+              0,
+              1500,
+              500
+            ],
+            "dimensions": [
+              1000,
+              800,
+              450
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              5300,
+              800,
+              650
+            ],
+            "dimensions": [
+              550,
+              900,
+              700
+            ]
+          },
+          {
+            "package_id": "P09",
+            "position": [
+              0,
+              1500,
+              950
+            ],
+            "dimensions": [
+              700,
+              700,
+              700
+            ]
+          },
+          {
+            "package_id": "P05",
+            "position": [
+              4900,
+              1700,
+              650
+            ],
+            "dimensions": [
+              800,
+              600,
+              500
+            ]
+          },
+          {
+            "package_id": "P10",
+            "position": [
+              4000,
+              800,
+              0
+            ],
+            "dimensions": [
+              850,
+              400,
+              650
+            ]
+          }
+        ],
+        "removed_by_repair": 0,
+        "placements": [
+          {
+            "package_id": "P11",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              2100,
+              1500,
+              1300
+            ]
+          },
+          {
+            "package_id": "P13",
+            "position": [
+              2100,
+              0,
+              0
+            ],
+            "dimensions": [
+              1900,
+              1200,
+              1450
+            ]
+          },
+          {
+            "package_id": "P12",
+            "position": [
+              2100,
+              1200,
+              0
+            ],
+            "dimensions": [
+              2800,
+              1100,
+              950
+            ]
+          },
+          {
+            "package_id": "P15",
+            "position": [
+              2100,
+              1200,
+              950
+            ],
+            "dimensions": [
+              2100,
+              950,
+              1100
+            ]
+          },
+          {
+            "package_id": "P14",
+            "position": [
+              4000,
+              0,
+              0
+            ],
+            "dimensions": [
+              1700,
+              800,
+              1400
+            ]
+          },
+          {
+            "package_id": "P04",
+            "position": [
+              4200,
+              800,
+              950
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P06",
+            "position": [
+              0,
+              0,
+              1300
+            ],
+            "dimensions": [
+              1300,
+              900,
+              600
+            ]
+          },
+          {
+            "package_id": "P01",
+            "position": [
+              4900,
+              800,
+              0
+            ],
+            "dimensions": [
+              800,
+              1200,
+              650
+            ]
+          },
+          {
+            "package_id": "P02",
+            "position": [
+              0,
+              1500,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              500
+            ]
+          },
+          {
+            "package_id": "P03",
+            "position": [
+              1200,
+              1500,
+              0
+            ],
+            "dimensions": [
+              700,
+              650,
+              1000
+            ]
+          },
+          {
+            "package_id": "P07",
+            "position": [
+              0,
+              1500,
+              500
+            ],
+            "dimensions": [
+              1000,
+              800,
+              450
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              5300,
+              800,
+              650
+            ],
+            "dimensions": [
+              550,
+              900,
+              700
+            ]
+          },
+          {
+            "package_id": "P09",
+            "position": [
+              0,
+              1500,
+              950
+            ],
+            "dimensions": [
+              700,
+              700,
+              700
+            ]
+          },
+          {
+            "package_id": "P05",
+            "position": [
+              4900,
+              1700,
+              650
+            ],
+            "dimensions": [
+              800,
+              600,
+              500
+            ]
+          },
+          {
+            "package_id": "P10",
+            "position": [
+              4000,
+              800,
+              0
+            ],
+            "dimensions": [
+              850,
+              400,
+              650
+            ]
+          }
+        ]
+      },
+      {
+        "valid": true,
+        "violations": [],
+        "metrics": {
+          "packed_count": 15,
+          "packed_volume": 18939500000,
+          "utilization": 0.5715454011862747,
+          "total_weight": 3990000
+        },
+        "runtime_seconds": 0.4176990830019349,
+        "annealing_seconds": 0.4063814999972237,
+        "seed": 4,
+        "sweeps": 200,
+        "reads": 16,
+        "candidate_cap": 100,
+        "qubo_variables": 100,
+        "qubo_conflicts": 3116,
+        "conflict_penalty": 4095000001,
+        "raw_energy": -18939500000,
+        "raw_valid": true,
+        "raw_violations": [],
+        "raw_placements": [
+          {
+            "package_id": "P11",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              2100,
+              1500,
+              1300
+            ]
+          },
+          {
+            "package_id": "P13",
+            "position": [
+              2100,
+              0,
+              0
+            ],
+            "dimensions": [
+              1900,
+              1200,
+              1450
+            ]
+          },
+          {
+            "package_id": "P12",
+            "position": [
+              2100,
+              1200,
+              0
+            ],
+            "dimensions": [
+              2800,
+              1100,
+              950
+            ]
+          },
+          {
+            "package_id": "P15",
+            "position": [
+              2100,
+              1200,
+              950
+            ],
+            "dimensions": [
+              2100,
+              950,
+              1100
+            ]
+          },
+          {
+            "package_id": "P14",
+            "position": [
+              4000,
+              0,
+              0
+            ],
+            "dimensions": [
+              1700,
+              800,
+              1400
+            ]
+          },
+          {
+            "package_id": "P04",
+            "position": [
+              4200,
+              800,
+              950
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P06",
+            "position": [
+              0,
+              0,
+              1300
+            ],
+            "dimensions": [
+              1300,
+              900,
+              600
+            ]
+          },
+          {
+            "package_id": "P01",
+            "position": [
+              4900,
+              800,
+              0
+            ],
+            "dimensions": [
+              800,
+              1200,
+              650
+            ]
+          },
+          {
+            "package_id": "P02",
+            "position": [
+              0,
+              1500,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              500
+            ]
+          },
+          {
+            "package_id": "P03",
+            "position": [
+              1200,
+              1500,
+              0
+            ],
+            "dimensions": [
+              700,
+              650,
+              1000
+            ]
+          },
+          {
+            "package_id": "P07",
+            "position": [
+              0,
+              1500,
+              500
+            ],
+            "dimensions": [
+              1000,
+              800,
+              450
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              5300,
+              800,
+              650
+            ],
+            "dimensions": [
+              550,
+              900,
+              700
+            ]
+          },
+          {
+            "package_id": "P09",
+            "position": [
+              0,
+              1500,
+              950
+            ],
+            "dimensions": [
+              700,
+              700,
+              700
+            ]
+          },
+          {
+            "package_id": "P05",
+            "position": [
+              4900,
+              1700,
+              650
+            ],
+            "dimensions": [
+              800,
+              600,
+              500
+            ]
+          },
+          {
+            "package_id": "P10",
+            "position": [
+              4000,
+              800,
+              0
+            ],
+            "dimensions": [
+              850,
+              400,
+              650
+            ]
+          }
+        ],
+        "removed_by_repair": 0,
+        "placements": [
+          {
+            "package_id": "P11",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              2100,
+              1500,
+              1300
+            ]
+          },
+          {
+            "package_id": "P13",
+            "position": [
+              2100,
+              0,
+              0
+            ],
+            "dimensions": [
+              1900,
+              1200,
+              1450
+            ]
+          },
+          {
+            "package_id": "P12",
+            "position": [
+              2100,
+              1200,
+              0
+            ],
+            "dimensions": [
+              2800,
+              1100,
+              950
+            ]
+          },
+          {
+            "package_id": "P15",
+            "position": [
+              2100,
+              1200,
+              950
+            ],
+            "dimensions": [
+              2100,
+              950,
+              1100
+            ]
+          },
+          {
+            "package_id": "P14",
+            "position": [
+              4000,
+              0,
+              0
+            ],
+            "dimensions": [
+              1700,
+              800,
+              1400
+            ]
+          },
+          {
+            "package_id": "P04",
+            "position": [
+              4200,
+              800,
+              950
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P06",
+            "position": [
+              0,
+              0,
+              1300
+            ],
+            "dimensions": [
+              1300,
+              900,
+              600
+            ]
+          },
+          {
+            "package_id": "P01",
+            "position": [
+              4900,
+              800,
+              0
+            ],
+            "dimensions": [
+              800,
+              1200,
+              650
+            ]
+          },
+          {
+            "package_id": "P02",
+            "position": [
+              0,
+              1500,
+              0
+            ],
+            "dimensions": [
+              1200,
+              800,
+              500
+            ]
+          },
+          {
+            "package_id": "P03",
+            "position": [
+              1200,
+              1500,
+              0
+            ],
+            "dimensions": [
+              700,
+              650,
+              1000
+            ]
+          },
+          {
+            "package_id": "P07",
+            "position": [
+              0,
+              1500,
+              500
+            ],
+            "dimensions": [
+              1000,
+              800,
+              450
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              5300,
+              800,
+              650
+            ],
+            "dimensions": [
+              550,
+              900,
+              700
+            ]
+          },
+          {
+            "package_id": "P09",
+            "position": [
+              0,
+              1500,
+              950
+            ],
+            "dimensions": [
+              700,
+              700,
+              700
+            ]
+          },
+          {
+            "package_id": "P05",
+            "position": [
+              4900,
+              1700,
+              650
+            ],
+            "dimensions": [
+              800,
+              600,
+              500
+            ]
+          },
+          {
+            "package_id": "P10",
+            "position": [
+              4000,
+              800,
+              0
+            ],
+            "dimensions": [
+              850,
+              400,
+              650
+            ]
+          }
+        ]
+      }
+    ],
+    "best_seed": 0
+  },
+  "20": {
+    "baseline": {
+      "valid": true,
+      "violations": [],
+      "metrics": {
+        "packed_count": 8,
+        "packed_volume": 19153500000,
+        "utilization": 0.5780033708187288,
+        "total_weight": 3990000
+      },
+      "runtime_seconds": 0.0007344580080825835,
+      "placements": [
+        {
+          "package_id": "P11",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "dimensions": [
+            2100,
+            1500,
+            1300
+          ]
+        },
+        {
+          "package_id": "P16",
+          "position": [
+            2100,
+            0,
+            0
+          ],
+          "dimensions": [
+            2300,
+            1500,
+            1100
+          ]
+        },
+        {
+          "package_id": "P17",
+          "position": [
+            4400,
+            0,
+            0
+          ],
+          "dimensions": [
+            1500,
+            1200,
+            1750
+          ]
+        },
+        {
+          "package_id": "P12",
+          "position": [
+            2100,
+            1200,
+            1100
+          ],
+          "dimensions": [
+            2800,
+            1100,
+            950
+          ]
+        },
+        {
+          "package_id": "P15",
+          "position": [
+            2100,
+            0,
+            1100
+          ],
+          "dimensions": [
+            2100,
+            950,
+            1100
+          ]
+        },
+        {
+          "package_id": "P14",
+          "position": [
+            0,
+            1500,
+            0
+          ],
+          "dimensions": [
+            1700,
+            800,
+            1400
+          ]
+        },
+        {
+          "package_id": "P04",
+          "position": [
+            4400,
+            1200,
+            0
+          ],
+          "dimensions": [
+            1100,
+            900,
+            750
+          ]
+        },
+        {
+          "package_id": "P08",
+          "position": [
+            1700,
+            1500,
+            0
+          ],
+          "dimensions": [
+            900,
+            700,
+            550
+          ]
+        }
+      ]
+    },
+    "hybrid_runs": [
+      {
+        "valid": true,
+        "violations": [],
+        "metrics": {
+          "packed_count": 8,
+          "packed_volume": 19153500000,
+          "utilization": 0.5780033708187288,
+          "total_weight": 3990000
+        },
+        "runtime_seconds": 0.3507491670025047,
+        "annealing_seconds": 0.3476234999980079,
+        "seed": 0,
+        "sweeps": 200,
+        "reads": 16,
+        "candidate_cap": 100,
+        "qubo_variables": 100,
+        "qubo_conflicts": 2427,
+        "conflict_penalty": 4095000001,
+        "raw_energy": -19153500000,
+        "raw_valid": true,
+        "raw_violations": [],
+        "raw_placements": [
+          {
+            "package_id": "P11",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              2100,
+              1500,
+              1300
+            ]
+          },
+          {
+            "package_id": "P16",
+            "position": [
+              2100,
+              0,
+              0
+            ],
+            "dimensions": [
+              2300,
+              1500,
+              1100
+            ]
+          },
+          {
+            "package_id": "P17",
+            "position": [
+              4400,
+              0,
+              0
+            ],
+            "dimensions": [
+              1500,
+              1200,
+              1750
+            ]
+          },
+          {
+            "package_id": "P12",
+            "position": [
+              2100,
+              1200,
+              1100
+            ],
+            "dimensions": [
+              2800,
+              1100,
+              950
+            ]
+          },
+          {
+            "package_id": "P15",
+            "position": [
+              2100,
+              0,
+              1100
+            ],
+            "dimensions": [
+              2100,
+              950,
+              1100
+            ]
+          },
+          {
+            "package_id": "P14",
+            "position": [
+              0,
+              1500,
+              0
+            ],
+            "dimensions": [
+              1700,
+              800,
+              1400
+            ]
+          },
+          {
+            "package_id": "P04",
+            "position": [
+              4400,
+              1200,
+              0
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              1700,
+              1500,
+              0
+            ],
+            "dimensions": [
+              900,
+              700,
+              550
+            ]
+          }
+        ],
+        "removed_by_repair": 0,
+        "placements": [
+          {
+            "package_id": "P11",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              2100,
+              1500,
+              1300
+            ]
+          },
+          {
+            "package_id": "P16",
+            "position": [
+              2100,
+              0,
+              0
+            ],
+            "dimensions": [
+              2300,
+              1500,
+              1100
+            ]
+          },
+          {
+            "package_id": "P17",
+            "position": [
+              4400,
+              0,
+              0
+            ],
+            "dimensions": [
+              1500,
+              1200,
+              1750
+            ]
+          },
+          {
+            "package_id": "P12",
+            "position": [
+              2100,
+              1200,
+              1100
+            ],
+            "dimensions": [
+              2800,
+              1100,
+              950
+            ]
+          },
+          {
+            "package_id": "P15",
+            "position": [
+              2100,
+              0,
+              1100
+            ],
+            "dimensions": [
+              2100,
+              950,
+              1100
+            ]
+          },
+          {
+            "package_id": "P14",
+            "position": [
+              0,
+              1500,
+              0
+            ],
+            "dimensions": [
+              1700,
+              800,
+              1400
+            ]
+          },
+          {
+            "package_id": "P04",
+            "position": [
+              4400,
+              1200,
+              0
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              1700,
+              1500,
+              0
+            ],
+            "dimensions": [
+              900,
+              700,
+              550
+            ]
+          }
+        ]
+      },
+      {
+        "valid": true,
+        "violations": [],
+        "metrics": {
+          "packed_count": 8,
+          "packed_volume": 19153500000,
+          "utilization": 0.5780033708187288,
+          "total_weight": 3990000
+        },
+        "runtime_seconds": 0.34387100000458304,
+        "annealing_seconds": 0.34068470798956696,
+        "seed": 1,
+        "sweeps": 200,
+        "reads": 16,
+        "candidate_cap": 100,
+        "qubo_variables": 100,
+        "qubo_conflicts": 2427,
+        "conflict_penalty": 4095000001,
+        "raw_energy": -19153500000,
+        "raw_valid": true,
+        "raw_violations": [],
+        "raw_placements": [
+          {
+            "package_id": "P11",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              2100,
+              1500,
+              1300
+            ]
+          },
+          {
+            "package_id": "P16",
+            "position": [
+              2100,
+              0,
+              0
+            ],
+            "dimensions": [
+              2300,
+              1500,
+              1100
+            ]
+          },
+          {
+            "package_id": "P17",
+            "position": [
+              4400,
+              0,
+              0
+            ],
+            "dimensions": [
+              1500,
+              1200,
+              1750
+            ]
+          },
+          {
+            "package_id": "P12",
+            "position": [
+              2100,
+              1200,
+              1100
+            ],
+            "dimensions": [
+              2800,
+              1100,
+              950
+            ]
+          },
+          {
+            "package_id": "P15",
+            "position": [
+              2100,
+              0,
+              1100
+            ],
+            "dimensions": [
+              2100,
+              950,
+              1100
+            ]
+          },
+          {
+            "package_id": "P14",
+            "position": [
+              0,
+              1500,
+              0
+            ],
+            "dimensions": [
+              1700,
+              800,
+              1400
+            ]
+          },
+          {
+            "package_id": "P04",
+            "position": [
+              4400,
+              1200,
+              0
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              1700,
+              1500,
+              0
+            ],
+            "dimensions": [
+              900,
+              700,
+              550
+            ]
+          }
+        ],
+        "removed_by_repair": 0,
+        "placements": [
+          {
+            "package_id": "P11",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              2100,
+              1500,
+              1300
+            ]
+          },
+          {
+            "package_id": "P16",
+            "position": [
+              2100,
+              0,
+              0
+            ],
+            "dimensions": [
+              2300,
+              1500,
+              1100
+            ]
+          },
+          {
+            "package_id": "P17",
+            "position": [
+              4400,
+              0,
+              0
+            ],
+            "dimensions": [
+              1500,
+              1200,
+              1750
+            ]
+          },
+          {
+            "package_id": "P12",
+            "position": [
+              2100,
+              1200,
+              1100
+            ],
+            "dimensions": [
+              2800,
+              1100,
+              950
+            ]
+          },
+          {
+            "package_id": "P15",
+            "position": [
+              2100,
+              0,
+              1100
+            ],
+            "dimensions": [
+              2100,
+              950,
+              1100
+            ]
+          },
+          {
+            "package_id": "P14",
+            "position": [
+              0,
+              1500,
+              0
+            ],
+            "dimensions": [
+              1700,
+              800,
+              1400
+            ]
+          },
+          {
+            "package_id": "P04",
+            "position": [
+              4400,
+              1200,
+              0
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              1700,
+              1500,
+              0
+            ],
+            "dimensions": [
+              900,
+              700,
+              550
+            ]
+          }
+        ]
+      },
+      {
+        "valid": true,
+        "violations": [],
+        "metrics": {
+          "packed_count": 8,
+          "packed_volume": 19153500000,
+          "utilization": 0.5780033708187288,
+          "total_weight": 3990000
+        },
+        "runtime_seconds": 0.3454568330053007,
+        "annealing_seconds": 0.342342167001334,
+        "seed": 2,
+        "sweeps": 200,
+        "reads": 16,
+        "candidate_cap": 100,
+        "qubo_variables": 100,
+        "qubo_conflicts": 2427,
+        "conflict_penalty": 4095000001,
+        "raw_energy": -19153500000,
+        "raw_valid": true,
+        "raw_violations": [],
+        "raw_placements": [
+          {
+            "package_id": "P11",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              2100,
+              1500,
+              1300
+            ]
+          },
+          {
+            "package_id": "P16",
+            "position": [
+              2100,
+              0,
+              0
+            ],
+            "dimensions": [
+              2300,
+              1500,
+              1100
+            ]
+          },
+          {
+            "package_id": "P17",
+            "position": [
+              4400,
+              0,
+              0
+            ],
+            "dimensions": [
+              1500,
+              1200,
+              1750
+            ]
+          },
+          {
+            "package_id": "P12",
+            "position": [
+              2100,
+              1200,
+              1100
+            ],
+            "dimensions": [
+              2800,
+              1100,
+              950
+            ]
+          },
+          {
+            "package_id": "P15",
+            "position": [
+              2100,
+              0,
+              1100
+            ],
+            "dimensions": [
+              2100,
+              950,
+              1100
+            ]
+          },
+          {
+            "package_id": "P14",
+            "position": [
+              0,
+              1500,
+              0
+            ],
+            "dimensions": [
+              1700,
+              800,
+              1400
+            ]
+          },
+          {
+            "package_id": "P04",
+            "position": [
+              4400,
+              1200,
+              0
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              1700,
+              1500,
+              0
+            ],
+            "dimensions": [
+              900,
+              700,
+              550
+            ]
+          }
+        ],
+        "removed_by_repair": 0,
+        "placements": [
+          {
+            "package_id": "P11",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              2100,
+              1500,
+              1300
+            ]
+          },
+          {
+            "package_id": "P16",
+            "position": [
+              2100,
+              0,
+              0
+            ],
+            "dimensions": [
+              2300,
+              1500,
+              1100
+            ]
+          },
+          {
+            "package_id": "P17",
+            "position": [
+              4400,
+              0,
+              0
+            ],
+            "dimensions": [
+              1500,
+              1200,
+              1750
+            ]
+          },
+          {
+            "package_id": "P12",
+            "position": [
+              2100,
+              1200,
+              1100
+            ],
+            "dimensions": [
+              2800,
+              1100,
+              950
+            ]
+          },
+          {
+            "package_id": "P15",
+            "position": [
+              2100,
+              0,
+              1100
+            ],
+            "dimensions": [
+              2100,
+              950,
+              1100
+            ]
+          },
+          {
+            "package_id": "P14",
+            "position": [
+              0,
+              1500,
+              0
+            ],
+            "dimensions": [
+              1700,
+              800,
+              1400
+            ]
+          },
+          {
+            "package_id": "P04",
+            "position": [
+              4400,
+              1200,
+              0
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              1700,
+              1500,
+              0
+            ],
+            "dimensions": [
+              900,
+              700,
+              550
+            ]
+          }
+        ]
+      },
+      {
+        "valid": true,
+        "violations": [],
+        "metrics": {
+          "packed_count": 8,
+          "packed_volume": 19153500000,
+          "utilization": 0.5780033708187288,
+          "total_weight": 3990000
+        },
+        "runtime_seconds": 0.3440277080080705,
+        "annealing_seconds": 0.3408348329976434,
+        "seed": 3,
+        "sweeps": 200,
+        "reads": 16,
+        "candidate_cap": 100,
+        "qubo_variables": 100,
+        "qubo_conflicts": 2427,
+        "conflict_penalty": 4095000001,
+        "raw_energy": -19153500000,
+        "raw_valid": true,
+        "raw_violations": [],
+        "raw_placements": [
+          {
+            "package_id": "P11",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              2100,
+              1500,
+              1300
+            ]
+          },
+          {
+            "package_id": "P16",
+            "position": [
+              2100,
+              0,
+              0
+            ],
+            "dimensions": [
+              2300,
+              1500,
+              1100
+            ]
+          },
+          {
+            "package_id": "P17",
+            "position": [
+              4400,
+              0,
+              0
+            ],
+            "dimensions": [
+              1500,
+              1200,
+              1750
+            ]
+          },
+          {
+            "package_id": "P12",
+            "position": [
+              2100,
+              1200,
+              1100
+            ],
+            "dimensions": [
+              2800,
+              1100,
+              950
+            ]
+          },
+          {
+            "package_id": "P15",
+            "position": [
+              2100,
+              0,
+              1100
+            ],
+            "dimensions": [
+              2100,
+              950,
+              1100
+            ]
+          },
+          {
+            "package_id": "P14",
+            "position": [
+              0,
+              1500,
+              0
+            ],
+            "dimensions": [
+              1700,
+              800,
+              1400
+            ]
+          },
+          {
+            "package_id": "P04",
+            "position": [
+              4400,
+              1200,
+              0
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              1700,
+              1500,
+              0
+            ],
+            "dimensions": [
+              900,
+              700,
+              550
+            ]
+          }
+        ],
+        "removed_by_repair": 0,
+        "placements": [
+          {
+            "package_id": "P11",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              2100,
+              1500,
+              1300
+            ]
+          },
+          {
+            "package_id": "P16",
+            "position": [
+              2100,
+              0,
+              0
+            ],
+            "dimensions": [
+              2300,
+              1500,
+              1100
+            ]
+          },
+          {
+            "package_id": "P17",
+            "position": [
+              4400,
+              0,
+              0
+            ],
+            "dimensions": [
+              1500,
+              1200,
+              1750
+            ]
+          },
+          {
+            "package_id": "P12",
+            "position": [
+              2100,
+              1200,
+              1100
+            ],
+            "dimensions": [
+              2800,
+              1100,
+              950
+            ]
+          },
+          {
+            "package_id": "P15",
+            "position": [
+              2100,
+              0,
+              1100
+            ],
+            "dimensions": [
+              2100,
+              950,
+              1100
+            ]
+          },
+          {
+            "package_id": "P14",
+            "position": [
+              0,
+              1500,
+              0
+            ],
+            "dimensions": [
+              1700,
+              800,
+              1400
+            ]
+          },
+          {
+            "package_id": "P04",
+            "position": [
+              4400,
+              1200,
+              0
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              1700,
+              1500,
+              0
+            ],
+            "dimensions": [
+              900,
+              700,
+              550
+            ]
+          }
+        ]
+      },
+      {
+        "valid": true,
+        "violations": [],
+        "metrics": {
+          "packed_count": 8,
+          "packed_volume": 19153500000,
+          "utilization": 0.5780033708187288,
+          "total_weight": 3990000
+        },
+        "runtime_seconds": 0.35196220899524633,
+        "annealing_seconds": 0.34890129099949263,
+        "seed": 4,
+        "sweeps": 200,
+        "reads": 16,
+        "candidate_cap": 100,
+        "qubo_variables": 100,
+        "qubo_conflicts": 2427,
+        "conflict_penalty": 4095000001,
+        "raw_energy": -19153500000,
+        "raw_valid": true,
+        "raw_violations": [],
+        "raw_placements": [
+          {
+            "package_id": "P11",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              2100,
+              1500,
+              1300
+            ]
+          },
+          {
+            "package_id": "P16",
+            "position": [
+              2100,
+              0,
+              0
+            ],
+            "dimensions": [
+              2300,
+              1500,
+              1100
+            ]
+          },
+          {
+            "package_id": "P17",
+            "position": [
+              4400,
+              0,
+              0
+            ],
+            "dimensions": [
+              1500,
+              1200,
+              1750
+            ]
+          },
+          {
+            "package_id": "P12",
+            "position": [
+              2100,
+              1200,
+              1100
+            ],
+            "dimensions": [
+              2800,
+              1100,
+              950
+            ]
+          },
+          {
+            "package_id": "P15",
+            "position": [
+              2100,
+              0,
+              1100
+            ],
+            "dimensions": [
+              2100,
+              950,
+              1100
+            ]
+          },
+          {
+            "package_id": "P14",
+            "position": [
+              0,
+              1500,
+              0
+            ],
+            "dimensions": [
+              1700,
+              800,
+              1400
+            ]
+          },
+          {
+            "package_id": "P04",
+            "position": [
+              4400,
+              1200,
+              0
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              1700,
+              1500,
+              0
+            ],
+            "dimensions": [
+              900,
+              700,
+              550
+            ]
+          }
+        ],
+        "removed_by_repair": 0,
+        "placements": [
+          {
+            "package_id": "P11",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "dimensions": [
+              2100,
+              1500,
+              1300
+            ]
+          },
+          {
+            "package_id": "P16",
+            "position": [
+              2100,
+              0,
+              0
+            ],
+            "dimensions": [
+              2300,
+              1500,
+              1100
+            ]
+          },
+          {
+            "package_id": "P17",
+            "position": [
+              4400,
+              0,
+              0
+            ],
+            "dimensions": [
+              1500,
+              1200,
+              1750
+            ]
+          },
+          {
+            "package_id": "P12",
+            "position": [
+              2100,
+              1200,
+              1100
+            ],
+            "dimensions": [
+              2800,
+              1100,
+              950
+            ]
+          },
+          {
+            "package_id": "P15",
+            "position": [
+              2100,
+              0,
+              1100
+            ],
+            "dimensions": [
+              2100,
+              950,
+              1100
+            ]
+          },
+          {
+            "package_id": "P14",
+            "position": [
+              0,
+              1500,
+              0
+            ],
+            "dimensions": [
+              1700,
+              800,
+              1400
+            ]
+          },
+          {
+            "package_id": "P04",
+            "position": [
+              4400,
+              1200,
+              0
+            ],
+            "dimensions": [
+              1100,
+              900,
+              750
+            ]
+          },
+          {
+            "package_id": "P08",
+            "position": [
+              1700,
+              1500,
+              0
+            ],
+            "dimensions": [
+              900,
+              700,
+              550
+            ]
+          }
+        ]
+      }
+    ],
+    "best_seed": 0
+  }
+}

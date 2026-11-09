@@ -1,0 +1,571 @@
+{
+  "H0": {
+    "expected_register": "01",
+    "expected_bits": [
+      1,
+      0
+    ]
+  },
+  "H1": {
+    "instance": {
+      "container": {
+        "dimensions": [
+          7,
+          1,
+          1
+        ],
+        "max_payload": 3
+      },
+      "packages": [
+        {
+          "id": "A",
+          "dimensions": [
+            5,
+            1,
+            1
+          ],
+          "weight": 1,
+          "allow_rotation": false
+        },
+        {
+          "id": "B",
+          "dimensions": [
+            3,
+            1,
+            1
+          ],
+          "weight": 1,
+          "allow_rotation": false
+        },
+        {
+          "id": "C",
+          "dimensions": [
+            3,
+            1,
+            1
+          ],
+          "weight": 1,
+          "allow_rotation": false
+        }
+      ]
+    },
+    "candidates": [
+      {
+        "package_id": "A",
+        "position": [
+          1,
+          0,
+          0
+        ],
+        "dimensions": [
+          5,
+          1,
+          1
+        ]
+      },
+      {
+        "package_id": "B",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "dimensions": [
+          3,
+          1,
+          1
+        ]
+      },
+      {
+        "package_id": "C",
+        "position": [
+          4,
+          0,
+          0
+        ],
+        "dimensions": [
+          3,
+          1,
+          1
+        ]
+      }
+    ],
+    "qubo": {
+      "rewards": [
+        5,
+        3,
+        3
+      ],
+      "conflicts": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "penalty": 6
+    },
+    "exact_qubo_energy": -6,
+    "exact_feasible_volume": 6,
+    "gamma": 1.9634954084936207,
+    "beta": -0.39269908169872414,
+    "ideal_optimum_probability": 0.32576906126146754
+  },
+  "H2": {
+    "instance": {
+      "container": {
+        "dimensions": [
+          4,
+          3,
+          1
+        ],
+        "max_payload": 3
+      },
+      "packages": [
+        {
+          "id": "A",
+          "dimensions": [
+            2,
+            3,
+            1
+          ],
+          "weight": 1,
+          "allow_rotation": true
+        },
+        {
+          "id": "B",
+          "dimensions": [
+            2,
+            3,
+            1
+          ],
+          "weight": 1,
+          "allow_rotation": false
+        },
+        {
+          "id": "C",
+          "dimensions": [
+            3,
+            1,
+            1
+          ],
+          "weight": 1,
+          "allow_rotation": false
+        }
+      ]
+    },
+    "candidates": [
+      {
+        "package_id": "A",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "dimensions": [
+          2,
+          3,
+          1
+        ]
+      },
+      {
+        "package_id": "A",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "dimensions": [
+          3,
+          2,
+          1
+        ]
+      },
+      {
+        "package_id": "B",
+        "position": [
+          2,
+          0,
+          0
+        ],
+        "dimensions": [
+          2,
+          3,
+          1
+        ]
+      },
+      {
+        "package_id": "C",
+        "position": [
+          0,
+          2,
+          0
+        ],
+        "dimensions": [
+          3,
+          1,
+          1
+        ]
+      }
+    ],
+    "qubo": {
+      "rewards": [
+        6,
+        6,
+        6,
+        3
+      ],
+      "conflicts": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "penalty": 7
+    },
+    "exact_qubo_energy": -12,
+    "exact_feasible_volume": 12,
+    "gamma": 1.3744467859455345,
+    "beta": -0.39269908169872414,
+    "ideal_optimum_probability": 0.2503673325907986
+  },
+  "H3": {
+    "instance": {
+      "container": {
+        "dimensions": [
+          5900,
+          2350,
+          2390
+        ],
+        "max_payload": 24000000
+      },
+      "packages": [
+        {
+          "id": "P01",
+          "dimensions": [
+            1200,
+            800,
+            650
+          ],
+          "weight": 180000,
+          "allow_rotation": true
+        },
+        {
+          "id": "P02",
+          "dimensions": [
+            1200,
+            800,
+            500
+          ],
+          "weight": 150000,
+          "allow_rotation": false
+        },
+        {
+          "id": "P03",
+          "dimensions": [
+            1000,
+            700,
+            650
+          ],
+          "weight": 210000,
+          "allow_rotation": true
+        },
+        {
+          "id": "P04",
+          "dimensions": [
+            1100,
+            900,
+            750
+          ],
+          "weight": 240000,
+          "allow_rotation": false
+        },
+        {
+          "id": "P05",
+          "dimensions": [
+            800,
+            600,
+            500
+          ],
+          "weight": 95000,
+          "allow_rotation": true
+        },
+        {
+          "id": "P06",
+          "dimensions": [
+            1300,
+            900,
+            600
+          ],
+          "weight": 275000,
+          "allow_rotation": false
+        },
+        {
+          "id": "P07",
+          "dimensions": [
+            1000,
+            800,
+            450
+          ],
+          "weight": 125000,
+          "allow_rotation": true
+        },
+        {
+          "id": "P08",
+          "dimensions": [
+            900,
+            700,
+            550
+          ],
+          "weight": 105000,
+          "allow_rotation": true
+        },
+        {
+          "id": "P09",
+          "dimensions": [
+            700,
+            700,
+            700
+          ],
+          "weight": 90000,
+          "allow_rotation": false
+        },
+        {
+          "id": "P10",
+          "dimensions": [
+            850,
+            650,
+            400
+          ],
+          "weight": 75000,
+          "allow_rotation": true
+        }
+      ]
+    },
+    "candidates": [
+      {
+        "package_id": "P04",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "dimensions": [
+          1100,
+          900,
+          750
+        ]
+      },
+      {
+        "package_id": "P06",
+        "position": [
+          1100,
+          0,
+          0
+        ],
+        "dimensions": [
+          1300,
+          900,
+          600
+        ]
+      },
+      {
+        "package_id": "P01",
+        "position": [
+          2400,
+          0,
+          0
+        ],
+        "dimensions": [
+          1200,
+          800,
+          650
+        ]
+      },
+      {
+        "package_id": "P02",
+        "position": [
+          3600,
+          0,
+          0
+        ],
+        "dimensions": [
+          1200,
+          800,
+          500
+        ]
+      },
+      {
+        "package_id": "P03",
+        "position": [
+          4800,
+          0,
+          0
+        ],
+        "dimensions": [
+          1000,
+          700,
+          650
+        ]
+      },
+      {
+        "package_id": "P07",
+        "position": [
+          4800,
+          700,
+          0
+        ],
+        "dimensions": [
+          1000,
+          800,
+          450
+        ]
+      },
+      {
+        "package_id": "P08",
+        "position": [
+          2400,
+          800,
+          0
+        ],
+        "dimensions": [
+          900,
+          700,
+          550
+        ]
+      },
+      {
+        "package_id": "P09",
+        "position": [
+          3300,
+          800,
+          0
+        ],
+        "dimensions": [
+          700,
+          700,
+          700
+        ]
+      },
+      {
+        "package_id": "P05",
+        "position": [
+          4000,
+          800,
+          0
+        ],
+        "dimensions": [
+          800,
+          600,
+          500
+        ]
+      },
+      {
+        "package_id": "P10",
+        "position": [
+          0,
+          900,
+          0
+        ],
+        "dimensions": [
+          850,
+          650,
+          400
+        ]
+      },
+      {
+        "package_id": "P01",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "dimensions": [
+          1200,
+          800,
+          650
+        ]
+      },
+      {
+        "package_id": "P02",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "dimensions": [
+          1200,
+          800,
+          500
+        ]
+      }
+    ],
+    "qubo": {
+      "rewards": [
+        742500000,
+        702000000,
+        624000000,
+        480000000,
+        455000000,
+        360000000,
+        346500000,
+        343000000,
+        240000000,
+        221000000,
+        624000000,
+        480000000
+      ],
+      "conflicts": [
+        [
+          0,
+          10
+        ],
+        [
+          0,
+          11
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          11
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          3,
+          11
+        ],
+        [
+          10,
+          11
+        ]
+      ],
+      "penalty": 742500001
+    },
+    "exact_qubo_energy": -4514000000,
+    "exact_feasible_volume": 4514000000,
+    "gamma": 1.1780972450961724,
+    "beta": -0.5890486225480862,
+    "ideal_optimum_probability": 0.022488873712066468
+  }
+}

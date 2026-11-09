@@ -1,0 +1,162 @@
+{
+  "container": {
+    "dimensions": [
+      5900,
+      2350,
+      2390
+    ],
+    "max_payload": 24000000
+  },
+  "packages": [
+    {
+      "id": "P01",
+      "dimensions": [
+        1200,
+        800,
+        650
+      ],
+      "weight": 180000,
+      "allow_rotation": true
+    },
+    {
+      "id": "P02",
+      "dimensions": [
+        1200,
+        800,
+        500
+      ],
+      "weight": 150000,
+      "allow_rotation": false
+    },
+    {
+      "id": "P03",
+      "dimensions": [
+        1000,
+        700,
+        650
+      ],
+      "weight": 210000,
+      "allow_rotation": true
+    },
+    {
+      "id": "P04",
+      "dimensions": [
+        1100,
+        900,
+        750
+      ],
+      "weight": 240000,
+      "allow_rotation": false
+    },
+    {
+      "id": "P05",
+      "dimensions": [
+        800,
+        600,
+        500
+      ],
+      "weight": 95000,
+      "allow_rotation": true
+    },
+    {
+      "id": "P06",
+      "dimensions": [
+        1300,
+        900,
+        600
+      ],
+      "weight": 275000,
+      "allow_rotation": false
+    },
+    {
+      "id": "P07",
+      "dimensions": [
+        1000,
+        800,
+        450
+      ],
+      "weight": 125000,
+      "allow_rotation": true
+    },
+    {
+      "id": "P08",
+      "dimensions": [
+        900,
+        700,
+        550
+      ],
+      "weight": 105000,
+      "allow_rotation": true
+    },
+    {
+      "id": "P09",
+      "dimensions": [
+        700,
+        700,
+        700
+      ],
+      "weight": 90000,
+      "allow_rotation": false
+    },
+    {
+      "id": "P10",
+      "dimensions": [
+        850,
+        650,
+        400
+      ],
+      "weight": 75000,
+      "allow_rotation": true
+    },
+    {
+      "id": "P11",
+      "dimensions": [
+        2100,
+        1500,
+        1300
+      ],
+      "weight": 560000,
+      "allow_rotation": true
+    },
+    {
+      "id": "P12",
+      "dimensions": [
+        1100,
+        2800,
+        950
+      ],
+      "weight": 420000,
+      "allow_rotation": true
+    },
+    {
+      "id": "P13",
+      "dimensions": [
+        1900,
+        1200,
+        1450
+      ],
+      "weight": 610000,
+      "allow_rotation": false
+    },
+    {
+      "id": "P14",
+      "dimensions": [
+        800,
+        1700,
+        1400
+      ],
+      "weight": 375000,
+      "allow_rotation": true
+    },
+    {
+      "id": "P15",
+      "dimensions": [
+        2100,
+        950,
+        1100
+      ],
+      "weight": 480000,
+      "allow_rotation": false
+    }
+  ]
+}
