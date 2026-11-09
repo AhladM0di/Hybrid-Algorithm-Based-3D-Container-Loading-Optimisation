@@ -1,0 +1,162 @@
+{
+  "container": {
+    "dimensions": [
+      1200,
+      1000,
+      400
+    ],
+    "max_payload": 100000
+  },
+  "packages": [
+    {
+      "id": "G00",
+      "dimensions": [
+        400,
+        800,
+        200
+      ],
+      "weight": 1000,
+      "allow_rotation": true
+    },
+    {
+      "id": "G01",
+      "dimensions": [
+        400,
+        200,
+        200
+      ],
+      "weight": 1000,
+      "allow_rotation": true
+    },
+    {
+      "id": "G02",
+      "dimensions": [
+        200,
+        200,
+        200
+      ],
+      "weight": 1000,
+      "allow_rotation": true
+    },
+    {
+      "id": "G03",
+      "dimensions": [
+        400,
+        800,
+        200
+      ],
+      "weight": 1000,
+      "allow_rotation": true
+    },
+    {
+      "id": "G04",
+      "dimensions": [
+        200,
+        200,
+        200
+      ],
+      "weight": 1000,
+      "allow_rotation": true
+    },
+    {
+      "id": "G05",
+      "dimensions": [
+        200,
+        200,
+        200
+      ],
+      "weight": 1000,
+      "allow_rotation": true
+    },
+    {
+      "id": "G06",
+      "dimensions": [
+        400,
+        200,
+        200
+      ],
+      "weight": 1000,
+      "allow_rotation": true
+    },
+    {
+      "id": "G07",
+      "dimensions": [
+        1200,
+        200,
+        200
+      ],
+      "weight": 1000,
+      "allow_rotation": true
+    },
+    {
+      "id": "G08",
+      "dimensions": [
+        200,
+        200,
+        200
+      ],
+      "weight": 1000,
+      "allow_rotation": true
+    },
+    {
+      "id": "G09",
+      "dimensions": [
+        200,
+        200,
+        200
+      ],
+      "weight": 1000,
+      "allow_rotation": true
+    },
+    {
+      "id": "G10",
+      "dimensions": [
+        200,
+        200,
+        200
+      ],
+      "weight": 1000,
+      "allow_rotation": true
+    },
+    {
+      "id": "G11",
+      "dimensions": [
+        200,
+        200,
+        200
+      ],
+      "weight": 1000,
+      "allow_rotation": true
+    },
+    {
+      "id": "G12",
+      "dimensions": [
+        1200,
+        800,
+        200
+      ],
+      "weight": 1000,
+      "allow_rotation": true
+    },
+    {
+      "id": "G13",
+      "dimensions": [
+        400,
+        200,
+        200
+      ],
+      "weight": 1000,
+      "allow_rotation": true
+    },
+    {
+      "id": "G14",
+      "dimensions": [
+        200,
+        200,
+        200
+      ],
+      "weight": 1000,
+      "allow_rotation": true
+    }
+  ]
+}

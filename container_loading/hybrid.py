@@ -10,7 +10,6 @@ from pathlib import Path
 from random import Random
 from time import perf_counter
 
-from baseline import first_fit_decreasing
 from check_packing import load_instance
 from feasibility import Instance, Package, Placement, overlaps, validate_packing
 
@@ -38,44 +37,56 @@ class Qubo:
         return offset, tuple(fields), tuple((i, j, coupling) for i, j in self.conflicts)
 
 
-def _package_candidates(
-    instance: Instance, package: Package, axes: tuple[tuple[int, ...], ...]
-) -> Iterator[Placement]:
-    for dimensions in package.orientations:
-        limits = tuple(bound - size for bound, size in zip(instance.container.dimensions, dimensions))
-        if min(limits) < 0:
-            continue
-        x_values, y_values, z_values = (
-            sorted({limit, *(value for value in axis if value <= limit)})
-            for axis, limit in zip(axes, limits)
-        )
-        for z, y, x in product(z_values, y_values, x_values):
-            yield Placement(package.id, (x, y, z), dimensions)
+def _layout(instance: Instance, packages: Sequence[Package], rng: Random | None):
+    """Build one geometric layout using corners created within this run."""
+    placed = []
+    points = {(0, 0, 0)}
+    bounds = instance.container.dimensions
+    for package in packages:
+        orientations = list(package.orientations)
+        positions = sorted(points, key=lambda point: (point[2], point[1], point[0]))
+        if rng is not None:
+            rng.shuffle(orientations)
+            rng.shuffle(positions)
+        for position, dimensions in product(positions, orientations):
+            candidate = Placement(package.id, position, dimensions)
+            if any(end > bound for end, bound in zip(candidate.end, bounds)):
+                continue
+            if any(overlaps(candidate, other) for other in placed):
+                continue
+            placed.append(candidate)
+            for axis in range(3):
+                point = list(position)
+                point[axis] = candidate.end[axis]
+                if point[axis] < bounds[axis]:
+                    points.add(tuple(point))
+            yield candidate
+            break
 
 
-def generate_candidates(instance: Instance, cap: int) -> tuple[Placement, ...]:
-    baseline = first_fit_decreasing(instance)
-    if cap < max(1, len(baseline)):
-        raise ValueError("Candidate cap must be positive and fit all baseline placements")
-
-    axes = tuple(tuple(sorted({0, *(placement.end[i] for placement in baseline)})) for i in range(3))
-    candidates = dict.fromkeys(baseline)
-    active = [
-        _package_candidates(instance, package, axes)
-        for package in sorted(instance.packages, key=lambda package: package.id)
-        if package.weight <= instance.container.max_payload
-    ]
-    while active and len(candidates) < cap:
-        next_round = []
-        for options in active:
-            for candidate in options:
-                if candidate not in candidates:
-                    candidates[candidate] = None
-                    next_round.append(options)
-                    break
+def generate_candidates(instance: Instance, cap: int, seed: int = 0) -> tuple[Placement, ...]:
+    """Mix independently constructed layouts without seeding from the baseline."""
+    if cap < 1:
+        raise ValueError("Candidate cap must be positive")
+    rng = Random(seed)
+    packages = sorted(
+        (package for package in instance.packages
+         if package.weight <= instance.container.max_payload),
+        key=lambda package: package.id,
+    )
+    longest_first = sorted(packages, key=lambda package: -max(package.dimensions))
+    small_first = sorted(packages, key=lambda package: prod(package.dimensions))
+    candidates = {}
+    orders = [(longest_first, None), (small_first, None)]
+    for _ in range(max(12, cap // max(1, len(packages)) * 3)):
+        order = packages.copy()
+        rng.shuffle(order)
+        orders.append((order, Random(rng.getrandbits(64))))
+    for order, layout_rng in orders:
+        for candidate in _layout(instance, order, layout_rng):
+            candidates[candidate] = None
             if len(candidates) == cap:
-                break
-        active = next_round
+                return tuple(candidates)
     return tuple(candidates)
 
 
@@ -139,12 +150,14 @@ def repair(instance: Instance, selected: Sequence[Placement]) -> tuple[Placement
     return kept
 
 
-def solve(instance: Instance, cap: int, seed: int, sweeps: int, reads: int) -> dict:
+def solve(instance: Instance, cap: int, seed: int, sweeps: int, reads: int,
+          penalty_factor: float = 1.0, sampler=anneal) -> dict:
     started = perf_counter()
-    candidates = generate_candidates(instance, cap)
-    qubo = build_qubo(candidates)
+    candidates = generate_candidates(instance, cap, seed)
+    largest_reward = max((prod(candidate.dimensions) for candidate in candidates), default=0)
+    qubo = build_qubo(candidates, int(largest_reward * penalty_factor) + 1)
     anneal_started = perf_counter()
-    bits = anneal(qubo, seed, sweeps, reads)
+    bits = sampler(qubo, seed, sweeps, reads)
     annealing_seconds = perf_counter() - anneal_started
 
     raw = tuple(candidate for candidate, bit in zip(candidates, bits) if bit)
@@ -160,6 +173,7 @@ def solve(instance: Instance, cap: int, seed: int, sweeps: int, reads: int) -> d
         "sweeps": sweeps,
         "reads": reads,
         "candidate_cap": cap,
+        "penalty_factor": penalty_factor,
         "qubo_variables": len(candidates),
         "qubo_conflicts": len(qubo.conflicts),
         "conflict_penalty": qubo.penalty,
@@ -175,13 +189,14 @@ def solve(instance: Instance, cap: int, seed: int, sweeps: int, reads: int) -> d
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("dataset", type=Path)
-    parser.add_argument("--cap", type=int, default=100)
+    parser.add_argument("--cap", type=int, default=240)
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--sweeps", type=int, default=200)
     parser.add_argument("--reads", type=int, default=16)
+    parser.add_argument("--penalty-factor", type=float, default=1.0)
     args = parser.parse_args()
     try:
-        report = solve(load_instance(args.dataset), args.cap, args.seed, args.sweeps, args.reads)
+        report = solve(load_instance(args.dataset), args.cap, args.seed, args.sweeps, args.reads, args.penalty_factor)
     except (OSError, ValueError, TypeError, KeyError) as error:
         parser.error(str(error))
     print(json.dumps(report, indent=2))

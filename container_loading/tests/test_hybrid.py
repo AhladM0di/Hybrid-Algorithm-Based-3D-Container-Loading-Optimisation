@@ -3,7 +3,8 @@ import unittest
 
 from feasibility import Container, Instance, Package, Placement, validate_packing
 from hardware_fixtures import decode_bitstring, exact_reference, fixtures
-from hybrid import anneal, generate_candidates, repair, solve
+from hybrid import anneal, build_qubo, generate_candidates, repair, solve
+from reference_solver import _optimize
 
 
 class HybridTests(unittest.TestCase):
@@ -37,23 +38,15 @@ class HybridTests(unittest.TestCase):
                          [(1, 0, 1, 0)])
 
     def test_candidates_are_capped_and_individually_feasible(self):
-        from baseline import first_fit_decreasing
-
-        fixture = self.fixtures["H3"]
-        instance, candidates = fixture.instance, fixture.candidates
-        baseline = first_fit_decreasing(instance)
-        self.assertEqual(len(candidates), 12)
-        self.assertEqual(candidates[:len(baseline)], baseline)
-        self.assertEqual(candidates, generate_candidates(instance, 12))
+        instance = self.fixtures["H3"].instance
+        candidates = generate_candidates(instance, 24, seed=2)
+        self.assertEqual(len(candidates), 24)
+        self.assertEqual(candidates, generate_candidates(instance, 24, seed=2))
+        self.assertNotEqual(candidates, generate_candidates(instance, 24, seed=3))
         self.assertEqual(len(set(candidates)), len(candidates))
         self.assertTrue(all(validate_packing(instance, (candidate,)).valid for candidate in candidates))
-        conflict_types = {
-            candidates[i].package_id == candidates[j].package_id
-            for i, j in fixture.qubo.conflicts
-        }
-        self.assertEqual(conflict_types, {False, True})
-        with self.assertRaisesRegex(ValueError, "fit all baseline placements"):
-            generate_candidates(instance, len(baseline) - 1)
+        with self.assertRaisesRegex(ValueError, "positive"):
+            generate_candidates(instance, 0)
 
     def test_repair_removes_duplicate_overlap_and_overweight(self):
         dimensions = (2, 2, 2)
@@ -66,6 +59,24 @@ class HybridTests(unittest.TestCase):
         self.assertEqual(repair(instance, (first, Placement("A", (2, 0, 0), dimensions))), (first,))
         self.assertEqual(repair(instance, (first, Placement("B", (1, 0, 0), dimensions))), (first,))
         self.assertEqual(repair(instance, (first, Placement("C", (2, 0, 0), dimensions))), (first,))
+
+    def test_independent_reference_with_payload(self):
+        dimensions = (2, 2, 2)
+        instance = Instance(Container((4, 2, 2), 10), (
+            Package("A", dimensions, 6, False),
+            Package("B", dimensions, 6, False),
+        ))
+        candidates = (
+            Placement("A", (0, 0, 0), dimensions),
+            Placement("B", (2, 0, 0), dimensions),
+        )
+        qubo = build_qubo(candidates)
+        geometry_only = _optimize(candidates, qubo)
+        payload_aware = _optimize(candidates, qubo, instance)
+        self.assertTrue(geometry_only["optimal"])
+        self.assertTrue(payload_aware["optimal"])
+        self.assertEqual(geometry_only["volume"], 16)
+        self.assertEqual(payload_aware["volume"], 8)
 
     def test_seeded_solver_and_measurement_order(self):
         self.assertEqual(decode_bitstring("01"), (1, 0))

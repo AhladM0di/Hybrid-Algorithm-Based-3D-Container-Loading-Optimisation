@@ -1,0 +1,132 @@
+[
+  {
+    "package_id": "G00",
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "dimensions": [
+      600,
+      200,
+      400
+    ]
+  },
+  {
+    "package_id": "G01",
+    "position": [
+      1000,
+      0,
+      0
+    ],
+    "dimensions": [
+      200,
+      200,
+      200
+    ]
+  },
+  {
+    "package_id": "G02",
+    "position": [
+      600,
+      0,
+      0
+    ],
+    "dimensions": [
+      400,
+      200,
+      400
+    ]
+  },
+  {
+    "package_id": "G03",
+    "position": [
+      0,
+      200,
+      200
+    ],
+    "dimensions": [
+      800,
+      200,
+      200
+    ]
+  },
+  {
+    "package_id": "G04",
+    "position": [
+      0,
+      200,
+      0
+    ],
+    "dimensions": [
+      1200,
+      200,
+      200
+    ]
+  },
+  {
+    "package_id": "G05",
+    "position": [
+      0,
+      400,
+      0
+    ],
+    "dimensions": [
+      800,
+      600,
+      400
+    ]
+  },
+  {
+    "package_id": "G06",
+    "position": [
+      1000,
+      0,
+      200
+    ],
+    "dimensions": [
+      200,
+      200,
+      200
+    ]
+  },
+  {
+    "package_id": "G07",
+    "position": [
+      800,
+      200,
+      200
+    ],
+    "dimensions": [
+      400,
+      200,
+      200
+    ]
+  },
+  {
+    "package_id": "G08",
+    "position": [
+      800,
+      400,
+      0
+    ],
+    "dimensions": [
+      400,
+      200,
+      400
+    ]
+  },
+  {
+    "package_id": "G09",
+    "position": [
+      800,
+      600,
+      0
+    ],
+    "dimensions": [
+      400,
+      400,
+      400
+    ]
+  }
+]

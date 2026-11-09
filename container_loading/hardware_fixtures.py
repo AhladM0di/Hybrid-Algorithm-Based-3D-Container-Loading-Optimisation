@@ -3,12 +3,13 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
 from itertools import product
+import json
 from math import pi
 from pathlib import Path
 
 from check_packing import load_instance
 from feasibility import Container, Instance, Package, Placement, validate_packing
-from hybrid import Qubo, build_qubo, generate_candidates
+from hybrid import Qubo, build_qubo
 
 
 @dataclass(frozen=True)
@@ -41,7 +42,13 @@ def fixtures() -> dict[str, Fixture]:
         Placement("C", (0, 2, 0), (3, 1, 1)),
     )
     benchmark = load_instance(Path(__file__).resolve().parent / "data" / "packages_10.json")
-    benchmark_candidates = generate_candidates(benchmark, 12)
+    # Preserve the exact circuits used for the recorded physical jobs.
+    reference_path = Path(__file__).resolve().parent / "data/hardware_reference.json"
+    frozen = json.loads(reference_path.read_text())["H3"]["candidates"]
+    benchmark_candidates = tuple(
+        Placement(record["package_id"], tuple(record["position"]), tuple(record["dimensions"]))
+        for record in frozen
+    )
     return {
         "H1": Fixture(overlap, overlap_candidates, build_qubo(overlap_candidates, penalty=6)),
         "H2": Fixture(rotation, rotation_candidates, build_qubo(rotation_candidates)),
@@ -145,6 +152,4 @@ def ideal_reference() -> dict:
 
 
 if __name__ == "__main__":
-    import json
-
     print(json.dumps(ideal_reference(), indent=2))
