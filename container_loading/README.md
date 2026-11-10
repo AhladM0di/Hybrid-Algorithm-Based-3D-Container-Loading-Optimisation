@@ -4,7 +4,7 @@ The project implements a deterministic First-Fit Decreasing reference and a
 hybrid solver that searches a pool of possible box placements. The main
 five-trial comparison uses a stronger weight-aware multi-start First-Fit
 comparator. “First-Fit” in its saved CSV files means this enhanced method.
-See the [deterministic reference](docs/deterministic_reference.md) for the
+See the [deterministic reference](results/main_v4/deterministic_reference.csv) for the
 single-pass baseline on exactly the same inputs.
 
 ## Environment
@@ -28,7 +28,7 @@ python main_comparison.py --output reproduced/main_v4
 The [frozen main protocol](data/main_comparison_protocol.json) uses seeds
 301–305. The 150 ms cutoff scores only results validated in time.
 Recorded elapsed time includes any late attempt that finishes after it.
-See the [main metrics table](docs/demo.md#main-v4-comparison),
+See the [main metrics table](results/main_v4/summary.csv),
 [paired intervals](results/main_v4/intervals.csv) and
 [best trial by case](results/main_v4/instances.csv).
 
@@ -50,7 +50,7 @@ python effort_benchmark.py --followup --fixed-only --output reproduced/v4_fixed
 python effort_benchmark.py --followup --output reproduced/v4_sweep
 ```
 
-See the [three-seed findings](docs/effort_v4.md) for the attempt-count tables,
+See the [three-seed results](results/effort_v4/) for the attempt-count tables,
 weight-aware baseline, mixed pool check and explicit-QUBO reference.
 
 ## Held-out comparison
@@ -64,7 +64,7 @@ python payload_experiment.py --exact-slack-only --output reproduced/exact_slack
 The held-out protocol fixes the generators, solver settings, and a 150 ms
 budget for each method. The comparison uses 30 instances, averages three
 trials within each instance, and reports paired results. Full-base support
-is a separate benchmark mode. See the [held-out findings](docs/heldout.md).
+is a separate benchmark mode. See the [held-out results](results/heldout/).
 
 For an individual run, use `baseline.py DATASET --seconds 0.15 --seed 301`
 for multi-start First-Fit or `hybrid.py DATASET --exact-slack` for exact
@@ -104,7 +104,7 @@ This experiment crosses five candidate-pool seeds with three search seeds
 on the 20-box case and the two tight geometry cases. It compares greedy
 repair with exact payload repair, single flips with compound swaps, global
 with per-pair penalties for single flips, and two ways to include weight
-in the search. See the [ablation findings](docs/payload_ablation.md).
+in the search. See the [ablation results](results/payload_ablation/).
 
 The hybrid CLI now uses compound swaps and exact payload repair by default.
 Use `--pool-seed` and `--anneal-seed` for separate seeds. Add
@@ -144,19 +144,13 @@ and find the best payload-feasible packing on the same seed-0 pool. The
 JSON distinguishes proven optima from time-limited bounds. The hybrid
 solver accepts a replacement sampler through its `sampler` argument.
 
-## Results and reports
+## Saved results
 
-- [Revised findings](docs/revised_experiment.md)
 - [Revised benchmark CSV](results/revised/benchmark.csv),
   [per-run JSON](results/revised/benchmark.json) and [parameter sweep](results/revised/tuning.csv)
 - [Revised 20-box comparison](results/revised/packing_packages_20.png) and
   [geometry comparison](results/revised/packing_geometry_10.png)
 - [Recorded IBM Quantum results](results/hardware.json)
-
-The final submission includes the [technical report](docs/technical_report.pdf),
-[student lab report](docs/container_loading_lab_report.docx),
-[seven-minute demo guide](docs/demo.md), and [PowerPoint slides](docs/demo_slides.pptx).
-The [v1 archive](docs/archive/v1/) holds the materials from the initial experiment.
 
 ## Optional IBM hardware experiment
 
@@ -174,13 +168,12 @@ The last command uses the saved IBM Quantum account and consumes hardware
 allocation. It checks H0 first, then runs H1 and H2 before H3. Rerun with
 the same output file and shot count to resume saved jobs.
 
-## Submission and report sources
+## Model specification
 
-The current archive is `../container-loading-submission-v4-five-trial.zip`.
-Older archives are retained in `../submission_archive/` and are historical.
-See [the model specification](docs/model.md) for the QUBO equation, penalties
-and dataset generation, and [the review fixes](docs/review_fixes.md) for provenance.
+See [the model specification](docs/model.md) for the QUBO equation, penalties,
+input generators and interpretation of the exploratory comparison.
 
-Rebuild the current archive with `python build_submission.py`. It verifies
-each packaged file against the included SHA-256 inventory. Report source
-and rebuild instructions are in `docs/source/`.
+The deterministic reference in `results/main_v4/deterministic_reference.csv`
+comes from the earlier recorded run on identical inputs. Its timings were
+not measured alongside the main five-trial experiment. New runs record this
+reference alongside the stochastic methods.

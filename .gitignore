@@ -1,0 +1,19 @@
+# This Git repository contains only the container-loading project.
+/*
+!/.gitignore
+!/README.md
+!/container_loading/
+
+# Local caches and generated environments.
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+.cache/
+.matplotlib/
+
+# Reports, presentations and submission bundles are not repository deliverables.
+*.pdf
+*.docx
+*.pptx
+*.zip
