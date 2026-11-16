@@ -2,6 +2,8 @@
 /*
 !/.gitignore
 !/README.md
+!/CODE_OF_CONDUCT.md
+!/LICENSE
 !/container_loading/
 
 # Local caches and generated environments.

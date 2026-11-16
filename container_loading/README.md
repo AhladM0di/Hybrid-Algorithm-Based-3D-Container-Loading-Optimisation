@@ -67,7 +67,8 @@ trials within each instance, and reports paired results. Full-base support
 is a separate benchmark mode. See the [held-out results](results/heldout/).
 
 For an individual run, use `baseline.py DATASET --seconds 0.15 --seed 301`
-for multi-start First-Fit or `hybrid.py DATASET --exact-slack` for exact
+for multi-start First-Fit (without the main benchmark’s weight-aware orders),
+or `hybrid.py DATASET --exact-slack` for exact
 weight units. Both accept `--require-support`, as does `check_packing.py`. Add
 `--support-during-search` to the hybrid to reject moves that would leave
 a box unsupported. This option requires `--require-support`.
