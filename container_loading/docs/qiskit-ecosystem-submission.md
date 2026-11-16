@@ -7,7 +7,7 @@ see the [readiness audit](ecosystem-readiness.md).
 
 | Field | Suggested value |
 |---|---|
-| Project name | Hybrid Algorithm-Based 3D Container Loading Optimisation |
+| Project name | Hybrid 3D Container Loading Optimisation |
 | Description | Classical container-loading research with QUBO placement search and small Qiskit QAOA hardware experiments. |
 | Category | Application |
 | Suggested labels | optimization, research, benchmarking, demo |
@@ -20,6 +20,13 @@ see the [readiness audit](ecosystem-readiness.md).
 | Packages | Leave blank; no published package claimed |
 | Reference paper | Leave blank; no publication claimed |
 | Contact email | Optional: maintainer to confirm preferred address |
+
+The project display name is 40 characters, below the 50-character limit; the
+GitHub repository name and URL remain unchanged. Ecosystem reads this value
+from the `Project name` field in the submission issue body, not this file or
+the issue title. To retry [submission #1465](https://github.com/Qiskit/ecosystem/issues/1465),
+edit that field in the existing issue; the submission workflow runs automatically
+on issue edits. The failed workflow's run number was 900, not the issue number.
 
 The description is 107 characters, below the 135-character limit. Select labels
 available in the live form; request any unavailable suggested labels in an issue
