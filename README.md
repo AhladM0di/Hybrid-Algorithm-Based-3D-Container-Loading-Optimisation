@@ -83,6 +83,11 @@ noise observations, not evidence of a quantum performance advantage. Job IDs,
 counts and recorded metrics are retained; this documentation review did not
 retrieve jobs or independently authenticate their execution with IBM.
 
+## Project status and support
+
+This experimental project is actively developed; breaking changes are possible,
+and support through GitHub issues is provided on a best-effort basis.
+
 ## Installation and local execution
 
 Use Python 3.13. From the repository root:

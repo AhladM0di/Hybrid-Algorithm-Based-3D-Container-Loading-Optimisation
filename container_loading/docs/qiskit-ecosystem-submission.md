@@ -25,6 +25,11 @@ The description is 107 characters, below the 135-character limit. Select labels
 available in the live form; request any unavailable suggested labels in an issue
 comment as directed by the form.
 
+## Maintenance expectations
+
+This experimental project is actively developed; breaking changes are possible,
+and support through GitHub issues is provided on a best-effort basis.
+
 ## Integration explanation
 
 The main container-loading solvers are classical. The project additionally
