@@ -183,13 +183,16 @@ analysis. The Python/CLI interface and experimental settings may change.
 
 ## Licensing and community
 
-An [MIT license proposal](container_loading/docs/LICENSE-MIT.proposed) credits
-Ahlad Modi, the sole author/committer visible in the inspected history. Ownership
-of all material has not been independently verified; the proposal is for
-maintainer review and is not an adopted repository license. See the
-[ownership and eligibility audit](container_loading/docs/ecosystem-readiness.md).
-The OSI-license eligibility requirement remains open until rights are confirmed
-and a root license is adopted. Third-party dependencies retain their own terms.
+This project is licensed under the [MIT License](LICENSE), with copyright
+attributed to Ahlad Modi. Adoption is based on the maintainer's rights
+confirmation; see the [ownership and eligibility audit](container_loading/docs/ecosystem-readiness.md).
+Third-party dependencies and any third-party material retain their own terms.
+
+### AI assistance
+
+This project was developed by Ahlad Modi with assistance from OpenAI Codex.
+Codex assisted with code and documentation development. AI assistance does not
+constitute independent validation of the implementation or experimental findings.
 
 Community participation follows the [Code of Conduct](CODE_OF_CONDUCT.md).
 The [Qiskit Ecosystem submission draft](container_loading/docs/qiskit-ecosystem-submission.md)

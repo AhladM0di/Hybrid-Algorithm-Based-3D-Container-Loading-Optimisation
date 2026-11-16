@@ -15,15 +15,15 @@ policy. Acceptance remains the Ecosystem reviewers' decision.
 |---|---|
 | Genuine integration | `hardware_fixtures.py` builds QAOA circuits; `qpu_benchmark.py` uses Runtime SamplerV2, backend transpilation and measurement decoding. Present. |
 | Qiskit 2.0+ | Hardware requirements pin 2.4.2 and Runtime 0.47.0; ideal fixtures reproduced locally using these versions. Verified for this environment, not every 2.x release. |
-| OSI-approved license | MIT text prepared in [LICENSE-MIT.proposed](LICENSE-MIT.proposed). **Open:** rights review and adoption of root `LICENSE` required. |
+| OSI-approved license | [MIT License](../../LICENSE) adopted on this branch following maintainer confirmation. Merge into `main` before submitting. |
 | Recent activity | Existing main commit `02cc570`, November 10, 2026, is within six months of this review. Recheck when submitting. |
 | Conduct | [Project policy](../../CODE_OF_CONDUCT.md) requires Qiskit's policy. The submitting maintainer must personally accept the form's conduct agreement. |
 
 ## Ownership and licensing review
 
-All nine commits reachable in the inspected history identify Ahlad Modi
+All nine commits reachable at the audited base `02cc570` identify Ahlad Modi
 (`ahlad08@vt.edu`) as author and committer. No LICENSE, COPYING or NOTICE file
-was found in that history. No third-party copyright notices, copied-code
+was found in that base history. No third-party copyright notices, copied-code
 attributions or vendored dependency source were found in the current tracked
 Python/Markdown files. This is a limited provenance review, not proof of sole
 ownership or exhaustive similarity detection.
@@ -37,13 +37,21 @@ from the current tree. Their rights and any course, collaborator or institutiona
 terms cannot be established from commit authorship. No historical attribution
 or notice has been removed or changed by this readiness work.
 
-Before adopting the proposed MIT text, the maintainer should confirm ownership
-or permission for the original inputs, code and retained outputs, whether any
-collaborators require attribution, and whether coursework/institutional terms
-apply. The proposed `Copyright (c) 2026 Ahlad Modi` follows the visible history;
-it must be corrected if other rights holders exist. After confirmation, adopt
-the proposal as root `LICENSE` and update the README and submission status.
-Do not assume that adopting it licenses third-party historical artifacts.
+On November 16, 2026, the maintainer disclosed development with Codex assistance
+and approved the following confirmation and MIT adoption:
+
+> I developed this project with Codex assistance. To the best of my knowledge,
+> I have the necessary rights to distribute the included material, have identified
+> any third-party contributions and applicable restrictions, and authorize adopting
+> MIT for the project material I am entitled to license.
+
+The root [LICENSE](../../LICENSE) now contains the MIT terms with
+`Copyright (c) 2026 Ahlad Modi`. Ahlad Modi is the sole recorded human contributor
+in the audited base history; this does not imply every line was manually written.
+The README acknowledges Codex's assistance with code and documentation.
+Adoption relies on the maintainer's confirmation, not independent verification
+of all ownership or institutional terms. It does not relicense third-party
+historical artifacts or override existing third-party notices.
 
 Direct external dependencies are matplotlib, SciPy, Qiskit, Qiskit IBM Runtime
 and optional dwave-neal; NumPy is also imported and supplied transitively.

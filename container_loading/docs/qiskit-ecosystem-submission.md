@@ -1,8 +1,9 @@
 # Qiskit Ecosystem submission draft
 
 Prepared for the [official submission form](https://github.com/Qiskit/ecosystem/issues/new?template=01_submission.yml).
-Do not submit until the license gap in the [readiness audit](ecosystem-readiness.md)
-is resolved and this documentation is merged into `main`.
+The [MIT License](../../LICENSE) is adopted on this branch following maintainer
+confirmation. Submit after the license and documentation are merged into `main`;
+see the [readiness audit](ecosystem-readiness.md).
 
 | Field | Suggested value |
 |---|---|
@@ -43,8 +44,6 @@ separate and are not interchangeable evidence.
 
 ## Before submitting
 
-- Confirm rights and adopt an OSI-approved root license; the MIT proposal alone
-  does not meet this requirement.
-- Merge reviewed documentation so the `main` documentation link describes it.
+- Merge the reviewed MIT license and documentation so they are available on `main`.
 - Confirm the contact and personally accept the Qiskit Code of Conduct checkbox.
 - Recheck recent activity and the live submission form at submission time.
