@@ -153,6 +153,28 @@ solver accepts a replacement sampler through its `sampler` argument.
   [geometry comparison](results/revised/packing_geometry_10.png)
 - [Recorded IBM Quantum results](results/hardware.json)
 
+## Local quantum compatibility and historical versions
+
+`requirements-hardware.txt` accepts Qiskit `>=2.4,<3` with Runtime 0.47.0.
+The [compatibility report](docs/qiskit-compatibility.md) records validation on
+2.4.0, 2.4.2 and 2.6.2. With these optional dependencies installed, the normal
+test command also checks ideal fixtures, routed transpilation and Runtime
+SamplerV2 on a local fake backend. No account or hardware allocation is needed.
+
+To select the original direct dependency versions in a separate environment:
+
+```sh
+python3.13 -m venv .venv-reproduction
+source .venv-reproduction/bin/activate
+python -m pip install -r requirements-hardware-reproduction.txt
+python -m unittest discover -s tests -v
+mkdir -p reproduced
+python hardware_fixtures.py > reproduced/hardware_ideal.json
+```
+
+This retains Qiskit 2.4.2 and Runtime 0.47.0. It is not a complete historical
+environment lock: original transitive dependency versions were not recorded.
+
 ## Optional IBM hardware experiment
 
 The hardware fixture manifest fixes the candidate order, coefficients and

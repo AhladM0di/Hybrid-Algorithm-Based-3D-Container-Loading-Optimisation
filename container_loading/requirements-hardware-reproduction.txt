@@ -1,0 +1,5 @@
+# Preserve the original direct versions for the recorded hardware experiments.
+# This is not a historical lockfile: transitive versions were not recorded.
+-r requirements.txt
+qiskit==2.4.2
+qiskit-ibm-runtime==0.47.0
