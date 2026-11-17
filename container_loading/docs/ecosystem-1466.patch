@@ -1,0 +1,20 @@
+--- a/resources/members/hybrid3dc_233af832.toml
++++ b/resources/members/hybrid3dc_233af832.toml
+@@ -8,3 +8,2 @@
+   "benchmarking",
+-  "demo",
+   "circuit building",
+@@ -13,3 +12,2 @@
+ category = "Application"
+-documentation = "https://github.com/AhladM0di/Hybrid-Algorithm-Based-3D-Container-Loading-Optimisation/blob/main/README.md"
+ packages = [
+@@ -44,6 +42,6 @@
+ file = "container_loading/requirements-hardware.txt"
+-requires_qiskit = "==2.4.2"
++requires_qiskit = ">=2.4,<3"
+ compatible_with_qiskit_v1 = false
+ compatible_with_qiskit_v2 = true
+-highest_supported_qiskit_release_date = 2026-06-14
+-highest_supported_qiskit_version = "2.4.2"
++highest_supported_qiskit_release_date = 2026-11-05
++highest_supported_qiskit_version = "2.6.2"

@@ -111,11 +111,16 @@ mkdir -p reproduced
 python hardware_fixtures.py > reproduced/hardware_ideal.json
 ```
 
-[requirements-hardware.txt](container_loading/requirements-hardware.txt) pins
-Qiskit **2.4.2** and `qiskit-ibm-runtime` **0.47.0**, and includes the base
-requirements. [requirements-qubo.txt](container_loading/requirements-qubo.txt)
-adds `dwave-neal` for the separate explicit-QUBO experiment. Direct dependencies
-are pinned; transitive dependencies are not fully locked.
+[requirements-hardware.txt](container_loading/requirements-hardware.txt) supports
+Qiskit **>=2.4,<3** with `qiskit-ibm-runtime` **0.47.0**, and includes the base
+requirements. Local compatibility tests pass on Qiskit 2.4.0, 2.4.2 and 2.6.2;
+see the [validation report](container_loading/docs/qiskit-compatibility.md).
+For the original direct experiment versions, install
+[requirements-hardware-reproduction.txt](container_loading/requirements-hardware-reproduction.txt)
+instead, which retains Qiskit **2.4.2** and Runtime **0.47.0**.
+[requirements-qubo.txt](container_loading/requirements-qubo.txt)
+adds `dwave-neal` for the separate explicit-QUBO experiment. Other direct
+dependencies are pinned; transitive dependencies are not fully locked.
 
 For a deliberately requested physical rerun, see the
 [hardware instructions](container_loading/README.md#optional-ibm-hardware-experiment).

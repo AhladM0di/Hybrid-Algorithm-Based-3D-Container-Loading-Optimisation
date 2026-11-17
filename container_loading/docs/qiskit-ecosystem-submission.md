@@ -1,20 +1,21 @@
 # Qiskit Ecosystem submission draft
 
-Prepared for the [official submission form](https://github.com/Qiskit/ecosystem/issues/new?template=01_submission.yml).
-The [MIT License](../../LICENSE) is adopted on this branch following maintainer
-confirmation. Submit after the license and documentation are merged into `main`;
-see the [readiness audit](ecosystem-readiness.md).
+The existing submission is under review in
+[Ecosystem PR #1466](https://github.com/Qiskit/ecosystem/pull/1466), originating
+from issue #1465. Update that submission; do not create a duplicate. The license
+and original readiness documentation are already merged into `main`.
+See the [compatibility report and metadata patch](qiskit-compatibility.md).
 
 | Field | Suggested value |
 |---|---|
 | Project name | Hybrid 3D Container Loading Optimisation |
 | Description | Classical container-loading research with QUBO placement search and small Qiskit QAOA hardware experiments. |
 | Category | Application |
-| Suggested labels | optimization, research, benchmarking, demo |
+| Suggested labels | optimization, research, benchmarking, circuit building |
 | Interface/API | Python, CLI |
 | Stability | experimental |
 | GitHub repository | https://github.com/AhladM0di/Hybrid-Algorithm-Based-3D-Container-Loading-Optimisation |
-| Documentation | https://github.com/AhladM0di/Hybrid-Algorithm-Based-3D-Container-Loading-Optimisation/blob/main/README.md |
+| Documentation | Leave blank; the repository README is already discoverable |
 | Qiskit dependency file | https://github.com/AhladM0di/Hybrid-Algorithm-Based-3D-Container-Loading-Optimisation/blob/main/container_loading/requirements-hardware.txt |
 | Home page | Leave blank; no separate site |
 | Packages | Leave blank; no published package claimed |
@@ -24,9 +25,7 @@ see the [readiness audit](ecosystem-readiness.md).
 The project display name is 40 characters, below the 50-character limit; the
 GitHub repository name and URL remain unchanged. Ecosystem reads this value
 from the `Project name` field in the submission issue body, not this file or
-the issue title. To retry [submission #1465](https://github.com/Qiskit/ecosystem/issues/1465),
-edit that field in the existing issue; the submission workflow runs automatically
-on issue edits. The failed workflow's run number was 900, not the issue number.
+the issue title. The original display-name correction is already reflected in PR #1466.
 
 The description is 107 characters, below the 135-character limit. Select labels
 available in the live form; request any unavailable suggested labels in an issue
@@ -41,7 +40,8 @@ and support through GitHub issues is provided on a best-effort basis.
 
 The main container-loading solvers are classical. The project additionally
 constructs depth-1 QAOA circuits from fixed geometry candidate-selection QUBOs
-using Qiskit 2.4.2. It tunes angles by ideal statevector simulation, transpiles
+using Qiskit >=2.4,<3 (historical experiments used 2.4.2). It tunes angles by
+ideal statevector simulation, transpiles
 for IBM backends and runs circuits through qiskit-ibm-runtime 0.47.0 SamplerV2.
 H0 checks measurement ordering; H1–H3 use 3, 4 and 12 placement qubits. Saved
 IBM hardware samples are decoded, checked for raw feasibility, repaired
@@ -54,8 +54,7 @@ paired 95% interval of −0.32 to +1.26, which includes zero. The cases were reu
 during development. Ideal, physical QPU and classical benchmark records are
 separate and are not interchangeable evidence.
 
-## Before submitting
+## Review follow-up
 
-- Merge the reviewed MIT license and documentation so they are available on `main`.
-- Confirm the contact and personally accept the Qiskit Code of Conduct checkbox.
-- Recheck recent activity and the live submission form at submission time.
+- Merge the compatibility changes so the dependency range is available on `main`.
+- Ask an Ecosystem maintainer to apply the supplied patch to the existing PR branch.

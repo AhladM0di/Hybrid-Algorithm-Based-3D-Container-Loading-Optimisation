@@ -1,0 +1,14 @@
+{
+  "validation_date": "2026-11-17",
+  "python": "3.13.5",
+  "system": "Darwin",
+  "release": "27.2.0",
+  "machine": "arm64",
+  "base_commit": "57b7e9de36372c712fa297d129882cedb744f6da",
+  "runtime": "0.47.0",
+  "qiskit_versions": [
+    "2.4.0",
+    "2.4.2",
+    "2.6.2"
+  ]
+}

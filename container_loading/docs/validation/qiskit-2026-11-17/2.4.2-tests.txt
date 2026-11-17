@@ -1,0 +1,42 @@
+test_exact_fill_and_deterministic_tie_break (test_baseline.BaselineTests.test_exact_fill_and_deterministic_tie_break) ... ok
+test_knapsack_control_and_fixed_work (test_baseline.BaselineTests.test_knapsack_control_and_fixed_work) ... ok
+test_payload_limited (test_baseline.BaselineTests.test_payload_limited) ... ok
+test_rotation_required (test_baseline.BaselineTests.test_rotation_required) ... ok
+test_skips_failed_packages_and_continues (test_baseline.BaselineTests.test_skips_failed_packages_and_continues) ... ok
+test_ten_package_dataset (test_baseline.BaselineTests.test_ten_package_dataset) ... ok
+test_duplicate_dataset_id (test_feasibility.FeasibilityTests.test_duplicate_dataset_id) ... ok
+test_duplicate_placement (test_feasibility.FeasibilityTests.test_duplicate_placement) ... ok
+test_exact_fill_face_contact_and_exact_payload (test_feasibility.FeasibilityTests.test_exact_fill_face_contact_and_exact_payload) ... ok
+test_out_of_bounds_in_both_directions (test_feasibility.FeasibilityTests.test_out_of_bounds_in_both_directions) ... ok
+test_payload_limited_partial_packing (test_feasibility.FeasibilityTests.test_payload_limited_partial_packing) ... ok
+test_positive_volume_overlap (test_feasibility.FeasibilityTests.test_positive_volume_overlap) ... ok
+test_rotation_permission (test_feasibility.FeasibilityTests.test_rotation_permission) ... ok
+test_unknown_package (test_feasibility.FeasibilityTests.test_unknown_package) ... ok
+test_candidates_are_capped_and_individually_feasible (test_hybrid.HybridTests.test_candidates_are_capped_and_individually_feasible) ... ok
+test_compound_search_and_pairwise_ising (test_hybrid.HybridTests.test_compound_search_and_pairwise_ising) ... ok
+test_duplicate_and_rotation_fixture (test_hybrid.HybridTests.test_duplicate_and_rotation_fixture) ... ok
+test_exact_payload_repair_beats_largest_first (test_hybrid.HybridTests.test_exact_payload_repair_beats_largest_first) ... ok
+test_explicit_qubo_matches_analytic_slack_energy (test_hybrid.HybridTests.test_explicit_qubo_matches_analytic_slack_energy) ... ok
+test_independent_reference_with_payload (test_hybrid.HybridTests.test_independent_reference_with_payload) ... ok
+test_overlap_tradeoff_and_ising_energy (test_hybrid.HybridTests.test_overlap_tradeoff_and_ising_energy) ... ok
+test_repair_removes_duplicate_overlap_and_overweight (test_hybrid.HybridTests.test_repair_removes_duplicate_overlap_and_overweight) ... ok
+test_seeded_solver_and_measurement_order (test_hybrid.HybridTests.test_seeded_solver_and_measurement_order) ... ok
+test_slack_residual_matches_binary_minimum (test_hybrid.HybridTests.test_slack_residual_matches_binary_minimum) ... ok
+test_full_ideal_reference_matches_frozen_experiment (test_quantum_compatibility.QuantumCompatibilityTests.test_full_ideal_reference_matches_frozen_experiment) ... ok
+test_runtime_sampler_local_counts_and_evaluation (test_quantum_compatibility.QuantumCompatibilityTests.test_runtime_sampler_local_counts_and_evaluation) ... /var/folders/9s/ydwstj1547g62x44hqgrmn0h0000gn/T/cwq-qiskit-compat-0ro9z9co/2.4.2/lib/python3.13/site-packages/stevedore/extension.py:338: DeprecationWarning: Since backends now support running jobs that contain both fractional gates and dynamic circuit, IBMFractionalTranslationPlugin is deprecated as of qiskit-ibm-runtime 0.42.0 and will be removed no sooner than 3 months after the release date. Use IBMDynamicFractionalTranslationPlugin instead.
+  obj = plugin(*invoke_args, **invoke_kwds)
+/var/folders/9s/ydwstj1547g62x44hqgrmn0h0000gn/T/cwq-qiskit-compat-0ro9z9co/2.4.2/lib/python3.13/site-packages/qiskit/providers/fake_provider/generic_backend_v2.py:348: RuntimeWarning: Aer not found using BasicSimulator and no noise
+  warnings.warn("Aer not found using BasicSimulator and no noise", RuntimeWarning)
+ok
+test_transpilation_preserves_logical_probabilities (test_quantum_compatibility.QuantumCompatibilityTests.test_transpilation_preserves_logical_probabilities) ... ok
+test_exact_capacity_and_one_gram_over (test_support_and_budget.SupportAndBudgetTests.test_exact_capacity_and_one_gram_over) ... ok
+test_exact_slack_retains_all_fifteen_light_boxes (test_support_and_budget.SupportAndBudgetTests.test_exact_slack_retains_all_fifteen_light_boxes) ... ok
+test_floor_floating_partial_and_shared_support (test_support_and_budget.SupportAndBudgetTests.test_floor_floating_partial_and_shared_support) ... ok
+test_multistart_keeps_a_validated_result_within_budget (test_support_and_budget.SupportAndBudgetTests.test_multistart_keeps_a_validated_result_within_budget) ... ok
+test_repair_cascades_when_bottom_is_removed (test_support_and_budget.SupportAndBudgetTests.test_repair_cascades_when_bottom_is_removed) ... ok
+test_support_aware_search_keeps_the_floor_of_a_stack (test_support_and_budget.SupportAndBudgetTests.test_support_aware_search_keeps_the_floor_of_a_stack) ... ok
+
+----------------------------------------------------------------------
+Ran 33 tests in 1.704s
+
+OK
